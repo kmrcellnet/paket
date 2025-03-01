@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     topupForm.addEventListener("submit", function (event) {
         event.preventDefault();
         let nominal = document.getElementById("topup-nominal").value;
-        let gambar = document.getElementById("paket-gambar").value;
+        let gambar = document.getElementById("topup-gambar").value;
 
         if (nominal && gambar) {
             topupData.push({ nominal, gambar });
