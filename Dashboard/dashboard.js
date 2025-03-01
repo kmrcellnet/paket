@@ -4,7 +4,7 @@ if (localStorage.getItem("isAdmin") !== "true") {
 // Cek apakah admin sudah login
 if (localStorage.getItem("isAdmin") !== "true") {
     console.log("Akses ditolak! Redirect ke login.html");
-    window.location.href = "UserAdmin/login.html"; // Redirect jika tidak login
+    window.location.href = "/UserAdmin/login.html"; // Redirect jika tidak login
 } else {
     console.log("Admin berhasil masuk ke dashboard");
 }
@@ -13,7 +13,7 @@ if (localStorage.getItem("isAdmin") !== "true") {
 function logout() {
     console.log("Admin logout. Kembali ke login page.");
     localStorage.removeItem("isAdmin");
-    window.location.href = "UserAdmin/login.html";
+    window.location.href = "/UserAdmin/login.html";
 }
 
 
