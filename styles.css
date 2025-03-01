@@ -36,9 +36,9 @@ h2 {
     width: 45%;
 }
 .icon {
-    width: 100px;  /* Ubah ukuran sesuai kebutuhan */
+    width: 200px;  /* Ubah ukuran sesuai kebutuhan */
     height: auto;  /* Biarkan tinggi menyesuaikan */
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 button {
     background-color: #28a745;
