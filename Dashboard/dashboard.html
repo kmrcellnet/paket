@@ -1,1 +1,36 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard Admin</h1>
+    </header>
+    <main>
+        <section id="paket-section">
+            <h2>Kelola Paket Data</h2>
+            <form id="paket-form">
+                <input type="text" id="paket-nama" placeholder="Nama Paket" required>
+                <input type="text" id="paket-harga" placeholder="Harga Paket" required>
+                <button type="submit">Tambah Paket</button>
+            </form>
+            <div id="paket-list"></div>
+        </section>
+
+        <section id="topup-section">
+            <h2>Kelola Top-Up</h2>
+            <form id="topup-form">
+                <input type="text" id="topup-nominal" placeholder="Nominal Top-Up" required>
+                <button type="submit">Tambah Top-Up</button>
+            </form>
+            <div id="topup-list"></div>
+        </section>
+    </main>
+    <script src="dashboard.js"></script>
+</body>
+</html>
