@@ -1,15 +1,19 @@
+/* Gaya Dasar */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
+
 header {
     background-color: #007bff;
     color: white;
     text-align: center;
     padding: 15px;
+    font-size: 20px;
 }
+
 main {
     width: 90%;
     max-width: 800px;
@@ -19,27 +23,54 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Judul */
 h2 {
     color: #333;
+    text-align: center;
 }
+
+/* Container Paket Data & Topup */
 .paket-container, .topup-container {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
+
+/* Kartu */
 .card {
     background: white;
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 45%;
 }
+
+/* Gambar */
 .icon {
-    width: 200px;  /* Ubah ukuran sesuai kebutuhan */
-    height: auto;  /* Biarkan tinggi menyesuaikan */
+    width: 200px;
+    height: auto;
     margin-bottom: 5px;
 }
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Tombol */
 button {
     background-color: #28a745;
     color: white;
@@ -47,8 +78,36 @@ button {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 5px;
+    font-size: 16px;
 }
+
 button:hover {
     background-color: #218838;
+}
+
+/* Responsif untuk Layar HP */
+@media (max-width: 600px) {
+    main {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .paket-container, .topup-container {
+        flex-direction: column; /* Ubah jadi satu kolom */
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%; /* Agar memenuhi layar */
+        padding: 15px;
+    }
+
+    .icon {
+        width: 150px; /* Ukuran lebih kecil di HP */
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
 }
