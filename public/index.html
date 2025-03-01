@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Up Pulsa & Paket Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Top-Up Pulsa & Paket Data</h2>
+        <form id="topupForm">
+            <label>Nomor HP:</label>
+            <input type="text" id="nomor_hp" required>
+            <label>Pilih Produk:</label>
+            <select id="produk">
+                <option value="Pulsa 10K|10000">Pulsa 10K - Rp10.000</option>
+                <option value="Pulsa 20K|20000">Pulsa 20K - Rp20.000</option>
+                <option value="Data 5GB|25000">Paket Data 5GB - Rp25.000</option>
+            </select>
+            <button type="submit">Top-Up Sekarang</button>
+        </form>
+        <p id="response"></p>
+        <a href="transaksi.php">Lihat Riwayat Transaksi</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
