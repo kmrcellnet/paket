@@ -1,4 +1,4 @@
-/* Gaya Dasar */
+/* Reset dasar */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,12 +6,42 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Header lebih rapi & proporsional */
 header {
     background-color: #007bff;
     color: white;
     text-align: center;
-    padding: 15px;
-    font-size: 20px;
+    padding: 20px; /* Lebih besar agar tidak terlalu sempit */
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan lembut */
+    position: relative;
+}
+
+/* Agar tampilan tetap seimbang */
+@media (max-width: 600px) {
+    header {
+        font-size: 18px; /* Ukuran font lebih kecil di HP */
+        padding: 15px;
+    }
+}
+
+/* Konten utama */
+main {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul */
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 main {
