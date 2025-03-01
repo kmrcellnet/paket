@@ -1,12 +1,19 @@
 // Cek apakah admin sudah login
 if (localStorage.getItem("isAdmin") !== "true") {
-    window.location.href = "login.html"; // Jika belum login, kembali ke halaman login
+
+// Cek apakah admin sudah login
+if (localStorage.getItem("isAdmin") !== "true") {
+    console.log("Akses ditolak! Redirect ke login.html");
+    window.location.href = "login.html"; // Redirect jika tidak login
+} else {
+    console.log("Admin berhasil masuk ke dashboard");
 }
 
-// Logout Admin
+// Fungsi Logout
 function logout() {
-    localStorage.removeItem("isAdmin"); // Hapus status login
-    window.location.href = "login.html"; // Arahkan ke halaman login
+    console.log("Admin logout. Kembali ke login page.");
+    localStorage.removeItem("isAdmin");
+    window.location.href = "login.html";
 }
 
 
