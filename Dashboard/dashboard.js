@@ -1,77 +1,81 @@
 document.addEventListener("DOMContentLoaded", function() {
-    loadPaketData();
-    loadTopupData();
+    console.log("JavaScript berjalan!");
 
+    // Ambil data dari Local Storage atau data.json jika kosong
+    let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
+    let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
+
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            if (paketData.length === 0) paketData = data.paketData;
+            if (topupData.length === 0) topupData = data.topup;
+
+            displayPaketData(paketData);
+            displayTopup(topupData);
+        })
+        .catch(error => console.error("Error fetching data:", error));
+
+    // Event listener untuk form tambah paket baru
     document.getElementById("paket-form").addEventListener("submit", function(e) {
         e.preventDefault();
+
         let nama = document.getElementById("paket-nama").value;
         let harga = document.getElementById("paket-harga").value;
-        addPaket(nama, harga);
-        this.reset();
-    });
+        let gambar = "default.jpg"; // Gambar default jika tidak ada input
 
-    document.getElementById("topup-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        let nominal = document.getElementById("topup-nominal").value;
-        addTopup(nominal);
+        if (nama.trim() === "" || harga.trim() === "") {
+            alert("Nama dan harga paket harus diisi!");
+            return;
+        }
+
+        let newPaket = { nama, harga, gambar };
+        paketData.push(newPaket);
+
+        localStorage.setItem("paketData", JSON.stringify(paketData));
+
+        displayPaketData(paketData); // Perbarui tampilan
         this.reset();
     });
 });
 
-function loadPaketData() {
-    let paketList = JSON.parse(localStorage.getItem("paketData")) || [];
+function displayPaketData(paketList) {
     let container = document.getElementById("paket-list");
-    container.innerHTML = "";
-    paketList.forEach((paket, index) => {
-        let div = document.createElement("div");
-        div.classList.add("list-item");
-        div.innerHTML = `
-            <span>${paket.nama} - ${paket.harga}</span>
-            <button class="delete-btn" onclick="deletePaket(${index})">Hapus</button>
+    container.innerHTML = ""; // Bersihkan daftar sebelum menampilkan ulang
+
+    paketList.forEach(paket => {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <img src="${paket.gambar}" alt="${paket.nama}" class="icon">
+            <h3>${paket.nama}</h3>
+            <p>${paket.harga}</p>
+            <button onclick="beliPaket('${paket.nama}')">Beli</button>
         `;
-        container.appendChild(div);
+        container.appendChild(card);
     });
 }
 
-function loadTopupData() {
-    let topupList = JSON.parse(localStorage.getItem("topupData")) || [];
+function displayTopup(topupList) {
     let container = document.getElementById("topup-list");
     container.innerHTML = "";
-    topupList.forEach((topup, index) => {
-        let div = document.createElement("div");
-        div.classList.add("list-item");
-        div.innerHTML = `
-            <span>Top-Up ${topup.nominal}</span>
-            <button class="delete-btn" onclick="deleteTopup(${index})">Hapus</button>
+
+    topupList.forEach(topup => {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <img src="${topup.gambar}" alt="Top-Up" class="icon">
+            <h3>Top-Up ${topup.nominal}</h3>
+            <button onclick="topUpSaldo('${topup.nominal}')">Top-Up</button>
         `;
-        container.appendChild(div);
+        container.appendChild(card);
     });
 }
 
-function addPaket(nama, harga) {
-    let paketList = JSON.parse(localStorage.getItem("paketData")) || [];
-    paketList.push({ nama, harga });
-    localStorage.setItem("paketData", JSON.stringify(paketList));
-    loadPaketData();
+function beliPaket(namaPaket) {
+    alert(`Anda membeli ${namaPaket}`);
 }
 
-function addTopup(nominal) {
-    let topupList = JSON.parse(localStorage.getItem("topupData")) || [];
-    topupList.push({ nominal });
-    localStorage.setItem("topupData", JSON.stringify(topupList));
-    loadTopupData();
-}
-
-function deletePaket(index) {
-    let paketList = JSON.parse(localStorage.getItem("paketData"));
-    paketList.splice(index, 1);
-    localStorage.setItem("paketData", JSON.stringify(paketList));
-    loadPaketData();
-}
-
-function deleteTopup(index) {
-    let topupList = JSON.parse(localStorage.getItem("topupData"));
-    topupList.splice(index, 1);
-    localStorage.setItem("topupData", JSON.stringify(topupList));
-    loadTopupData();
+function topUpSaldo(nominal) {
+    alert(`Anda melakukan top-up sebesar ${nominal}`);
 }
