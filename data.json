@@ -1,6 +1,5 @@
 {
     "paketData": [
-        "SI MERAH"
         { "id": 1, "nama": "Paket 1GB - 1 Hari", "harga": "Rp 5.000", "gambar": "assets/telkomsel.png" },
         { "id": 2, "nama": "Paket 5GB - 7 Hari", "harga": "Rp 25.000", "gambar": "assets/telkomsel.png" },
         { "id": 3, "nama": "Paket 10GB - 30 Hari", "harga": "Rp 50.000", "gambar": "assets/telkomsel.png" }
