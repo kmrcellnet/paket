@@ -10,7 +10,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
 
     if (username === adminUser && password === adminPass) {
         localStorage.setItem("isAdmin", "true"); // Simpan status login
-        window.location.href = "Dashboard/dashboard.html"; // Arahkan ke dashboard
+        window.location.href = "/Dashboard/dashboard.html"; // Arahkan ke dashboard
     } else {
         document.getElementById("error-message").innerText = "Username atau password salah!";
     }
