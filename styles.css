@@ -1,35 +1,54 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background-color: #007bff;
+    color: white;
     text-align: center;
-    margin: 20px;
+    padding: 15px;
 }
-
-form {
-    margin-bottom: 20px;
+main {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-input, button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
+h2 {
+    color: #333;
 }
-
-.paket-container {
+.paket-container, .topup-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 15px;
 }
-
 .card {
-    border: 1px solid #ccc;
+    background: white;
     padding: 10px;
-    margin: 10px;
-    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-align: center;
+    width: 45%;
 }
-
 .icon {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+button:hover {
+    background-color: #218838;
 }
