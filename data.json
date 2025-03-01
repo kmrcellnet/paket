@@ -2,13 +2,13 @@
     "paketData": [
         { "id": 1, "nama": "Paket 1GB - 1 Hari", "harga": "Rp 5.000", "gambar": "assets/telkomsel.png" },
         { "id": 2, "nama": "Paket 5GB - 7 Hari", "harga": "Rp 25.000", "gambar": "assets/telkomsel.png" },
-        { "id": 3, "nama": "Paket 10GB - 30 Hari", "harga": "Rp 50.000", "gambar": "assets/telkomsel.png" }
-        { "id": 4, "nama": "Paket 10GB - 30 Hari", "harga": "Rp 50.000", "gambar": "assets/telkomsel.png" }
+        { "id": 3, "nama": "Paket 10GB - 30 Hari", "harga": "Rp 50.000", "gambar": "assets/telkomsel.png" }, 
+        { "id": 4, "nama": "Paket 17GB - 30 Hari", "harga": "Rp 70.000", "gambar": "assets/telkomsel.png" }
     ],
     "topup": [
         { "id": 1, "nominal": "Rp 10.000", "gambar": "assets/dana.png" },
         { "id": 2, "nominal": "Rp 50.000", "gambar": "assets/dana.png" },
-        { "id": 3, "nominal": "Rp 100.000", "gambar": "assets/dana.png" }
-        { "id": 4, "nominal": "Rp 100.000", "gambar": "assets/dana.png" }
+        { "id": 3, "nominal": "Rp 100.000", "gambar": "assets/dana.png" }, 
+        { "id": 4, "nominal": "Rp 150.000", "gambar": "assets/dana.png" }
     ]
 }
