@@ -1,63 +1,50 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Dashboard Admin: Memuat data...");
+    const form = document.getElementById("paket-form");
+    const paketList = document.getElementById("paket-list");
 
-    let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
+    // Menyimpan daftar paket
+    let paketData = [];
 
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            if (paketData.length === 0) paketData = data.paketData;
+    // Fungsi untuk menampilkan daftar paket
+    function displayPaketData() {
+        paketList.innerHTML = "";
+        paketData.forEach((paket, index) => {
+            let card = document.createElement("div");
+            card.classList.add("list-item");
+            card.innerHTML = `
+                <img src="${paket.gambar}" alt="${paket.nama}" width="50">
+                <div>
+                    <h3>${paket.nama}</h3>
+                    <p>Harga: ${paket.harga}</p>
+                </div>
+                <button class="delete-btn" onclick="hapusPaket(${index})">Hapus</button>
+            `;
+            paketList.appendChild(card);
+        });
+    }
 
-            displayPaketData(paketData);
-        })
-        .catch(error => console.error("Error fetching data:", error));
-
-    document.getElementById("paket-form").addEventListener("submit", function (e) {
-        e.preventDefault();
+    // Fungsi untuk menambah paket baru
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
         let nama = document.getElementById("paket-nama").value;
         let harga = document.getElementById("paket-harga").value;
-        let fileInput = document.getElementById("paket-gambar");
+        let gambar = document.getElementById("paket-gambar").value;
 
-        if (nama.trim() === "" || harga.trim() === "") {
-            alert("Nama dan harga paket harus diisi!");
-            return;
-        }
-
-        let reader = new FileReader();
-        reader.onload = function (event) {
-            let gambar = event.target.result; // Gambar dalam format base64
-
-            let newPaket = { nama, harga, gambar };
-            paketData.push(newPaket);
-
-            // Simpan ke Local Storage
-            localStorage.setItem("paketData", JSON.stringify(paketData));
-
-            displayPaketData(paketData);
-            document.getElementById("paket-form").reset();
-        };
-
-        if (fileInput.files.length > 0) {
-            reader.readAsDataURL(fileInput.files[0]);
+        if (nama && harga && gambar) {
+            paketData.push({ nama, harga, gambar });
+            displayPaketData();
+            form.reset();
         } else {
-            alert("Harap pilih gambar!");
+            alert("Harap isi semua data!");
         }
     });
+
+    // Fungsi untuk menghapus paket
+    window.hapusPaket = function (index) {
+        paketData.splice(index, 1);
+        displayPaketData();
+    };
+
+    displayPaketData();
 });
-
-function displayPaketData(paketList) {
-    let container = document.getElementById("paket-list");
-    container.innerHTML = ""; 
-
-    paketList.forEach(paket => {
-        let card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-            <img src="${paket.gambar}" alt="${paket.nama}" class="icon">
-            <h3>${paket.nama}</h3>
-            <p>${paket.harga}</p>
-        `;
-        container.appendChild(card);
-    });
-}
