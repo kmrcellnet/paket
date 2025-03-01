@@ -28,6 +28,7 @@ main {
 h2 {
     color: #333;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 /* Container Paket Data & Topup */
@@ -45,12 +46,13 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 45%;
+    width: calc(50% - 20px); /* Agar 2 kolom di layar besar */
+    box-sizing: border-box;
 }
 
 /* Gambar */
 .icon {
-    width: 200px;
+    width: 100px; /* Ukuran gambar disamakan */
     height: auto;
     margin-bottom: 5px;
 }
@@ -75,10 +77,11 @@ button {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    width: 100%;
 }
 
 button:hover {
@@ -93,7 +96,7 @@ button:hover {
     }
 
     .paket-container, .topup-container {
-        flex-direction: column; /* Ubah jadi satu kolom */
+        flex-direction: column;
         gap: 10px;
     }
 
@@ -103,11 +106,11 @@ button:hover {
     }
 
     .icon {
-        width: 150px; /* Ukuran lebih kecil di HP */
+        width: 80px; /* Ukuran gambar lebih kecil di HP */
     }
 
     button {
-        width: 100%;
-        padding: 12px;
+        font-size: 14px;
+        padding: 10px;
     }
 }
