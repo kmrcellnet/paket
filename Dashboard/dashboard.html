@@ -1,12 +1,31 @@
-<form id="paket-form">
-    <label for="paket-nama">Nama Paket:</label>
-    <input type="text" id="paket-nama" required>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Dashboard Admin</h1>
 
-    <label for="paket-harga">Harga Paket:</label>
-    <input type="text" id="paket-harga" required>
+    <!-- Form untuk menambah paket data -->
+    <form id="paket-form">
+        <label for="paket-nama">Nama Paket:</label>
+        <input type="text" id="paket-nama" required>
 
-    <label for="paket-gambar">Pilih Gambar:</label>
-    <input type="file" id="paket-gambar" accept="image/*">
+        <label for="paket-harga">Harga Paket:</label>
+        <input type="text" id="paket-harga" required>
 
-    <button type="submit">Tambah Paket</button>
-</form>
+        <label for="paket-gambar">Pilih Gambar:</label>
+        <input type="file" id="paket-gambar" accept="image/*">
+
+        <button type="submit">Tambah Paket</button>
+    </form>
+
+    <h2>Daftar Paket Data</h2>
+    <div id="paket-list" class="paket-container"></div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
