@@ -1,22 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Memuat data ke index.html");
 
-    // Ambil data dari Local Storage atau gunakan data.json jika kosong
+    // Ambil data dari localStorage atau fallback ke data.json
     let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
 
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            if (paketData.length === 0) paketData = data.paketData;
-
-            displayPaketData(paketData);
-        })
-        .catch(error => console.error("Error fetching data:", error));
+    if (paketData.length === 0) {
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+                paketData = data.paketData;
+                localStorage.setItem("paketData", JSON.stringify(paketData)); // Simpan ke localStorage
+                displayPaketData(paketData);
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    } else {
+        displayPaketData(paketData); // Jika sudah ada di localStorage, langsung tampilkan
+    }
 });
 
+// Fungsi menampilkan daftar paket data
 function displayPaketData(paketList) {
     let container = document.getElementById("paket-list");
-    container.innerHTML = ""; // Bersihkan sebelum menambahkan ulang
+    container.innerHTML = ""; // Bersihkan sebelum menampilkan ulang
 
     paketList.forEach(paket => {
         let card = document.createElement("div");
@@ -31,6 +36,7 @@ function displayPaketData(paketList) {
     });
 }
 
+// Fungsi pembelian paket (dummy alert)
 function beliPaket(namaPaket) {
     alert(`Anda membeli ${namaPaket}`);
 }
