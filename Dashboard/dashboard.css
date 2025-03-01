@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #eef2f7; /* Warna latar belakang lebih lembut */
 }
 
 /* Header */
@@ -11,23 +11,30 @@ header {
     background-color: #007bff;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 /* Kontainer utama */
 main {
     width: 90%;
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Judul */
 h2 {
     color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    text-transform: uppercase;
 }
 
 /* Form input */
@@ -35,14 +42,31 @@ form {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa; /* Warna background lebih soft */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    width: 100%;
+    color: #555;
 }
 
 input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #007bff;
     border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
 }
 
 /* Tombol utama */
@@ -50,39 +74,53 @@ button {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover {
     background-color: #218838;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Daftar item */
 .list-item {
     background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.list-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Tombol hapus */
 .delete-btn {
-    background-color: red;
+    background-color: #dc3545;
     border: none;
-    padding: 5px;
+    padding: 8px 12px;
     color: white;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 .delete-btn:hover {
-    background-color: darkred;
+    background-color: #c82333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsif */
