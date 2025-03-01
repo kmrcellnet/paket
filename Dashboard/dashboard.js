@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fungsi untuk menampilkan daftar paket
     function displayPaketData() {
-        paketList.innerHTML = "";
+        paketList.innerHTML = ""; // Mengosongkan daftar sebelumnya
         paketData.forEach((paket, index) => {
             let card = document.createElement("div");
             card.classList.add("list-item");
             card.innerHTML = `
-                <img src="${paket.gambar}" alt="${paket.nama}" width="50">
-                <div>
+                <img src="${paket.gambar}" alt="${paket.nama}" class="paket-img">
+                <div class="paket-info">
                     <h3>${paket.nama}</h3>
                     <p>Harga: ${paket.harga}</p>
                 </div>
@@ -25,16 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fungsi untuk menambah paket baru
     form.addEventListener("submit", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Menghindari reload halaman saat submit
 
         let nama = document.getElementById("paket-nama").value;
         let harga = document.getElementById("paket-harga").value;
         let gambar = document.getElementById("paket-gambar").value;
 
         if (nama && harga && gambar) {
-            paketData.push({ nama, harga, gambar });
-            displayPaketData();
-            form.reset();
+            paketData.push({ nama, harga, gambar }); // Menambah paket ke dalam array
+            displayPaketData(); // Menampilkan kembali daftar paket
+            form.reset(); // Mereset form setelah menambah paket
         } else {
             alert("Harap isi semua data!");
         }
@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fungsi untuk menghapus paket
     window.hapusPaket = function (index) {
-        paketData.splice(index, 1);
-        displayPaketData();
+        paketData.splice(index, 1); // Menghapus paket berdasarkan indeks
+        displayPaketData(); // Menampilkan kembali daftar setelah dihapus
     };
 
-    displayPaketData();
+    displayPaketData(); // Menampilkan daftar paket saat pertama kali dimuat
 });
