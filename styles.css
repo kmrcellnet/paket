@@ -1,54 +1,35 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-header {
-    background-color: #007bff;
-    color: white;
     text-align: center;
-    padding: 15px;
+    margin: 20px;
 }
-main {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+form {
+    margin-bottom: 20px;
 }
-h2 {
-    color: #333;
+
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
 }
-.paket-container, .topup-container {
+
+.paket-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    justify-content: center;
 }
+
 .card {
-    background: white;
+    border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 200px;
     text-align: center;
-    width: 45%;
 }
+
 .icon {
-    width: 200px;  /* Ubah ukuran sesuai kebutuhan */
-    height: auto;  /* Biarkan tinggi menyesuaikan */
-    margin-bottom: 5px;
-}
-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 5px;
-}
-button:hover {
-    background-color: #218838;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }
