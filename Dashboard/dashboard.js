@@ -1,3 +1,15 @@
+// Cek apakah admin sudah login
+if (localStorage.getItem("isAdmin") !== "true") {
+    window.location.href = "login.html"; // Jika belum login, kembali ke halaman login
+}
+
+// Logout Admin
+function logout() {
+    localStorage.removeItem("isAdmin"); // Hapus status login
+    window.location.href = "login.html"; // Arahkan ke halaman login
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const paketForm = document.getElementById("paket-form");
     const paketList = document.getElementById("paket-list");
