@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("paket-form");
+    const paketForm = document.getElementById("paket-form");
     const paketList = document.getElementById("paket-list");
 
-    // Ambil data dari localStorage atau buat array kosong
-    let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
+    const topupForm = document.getElementById("topup-form");
+    const topupList = document.getElementById("topup-list");
 
-    // Fungsi menampilkan daftar paket
+    let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
+    let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
+
+    // === Menampilkan Paket Data ===
     function displayPaketData() {
         paketList.innerHTML = "";
         paketData.forEach((paket, index) => {
@@ -22,14 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
             paketList.appendChild(card);
         });
 
-        // Simpan data terbaru ke localStorage
         localStorage.setItem("paketData", JSON.stringify(paketData));
     }
 
-    // Fungsi menambah paket baru
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    // === Menampilkan Top-Up Saldo ===
+    function displayTopupData() {
+        topupList.innerHTML = "";
+        topupData.forEach((topup, index) => {
+            let card = document.createElement("div");
+            card.classList.add("list-item");
+            card.innerHTML = `
+                <img src="${topup.gambar}" alt="Top-Up ${topup.nominal}" class="paket-img">
+                <div class="paket-info">
+                    <h3>Top-Up ${topup.nominal}</h3>
+                </div>
+                <button class="delete-btn" onclick="hapusTopup(${index})">Hapus</button>
+            `;
+            topupList.appendChild(card);
+        });
 
+        localStorage.setItem("topupData", JSON.stringify(topupData));
+    }
+
+    // === Tambah Paket Data ===
+    paketForm.addEventListener("submit", function (event) {
+        event.preventDefault();
         let nama = document.getElementById("paket-nama").value;
         let harga = document.getElementById("paket-harga").value;
         let gambar = document.getElementById("paket-gambar").value;
@@ -37,17 +57,39 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nama && harga && gambar) {
             paketData.push({ nama, harga, gambar });
             displayPaketData();
-            form.reset();
+            paketForm.reset();
         } else {
             alert("Harap isi semua data!");
         }
     });
 
-    // Fungsi menghapus paket
+    // === Tambah Top-Up Saldo ===
+    topupForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let nominal = document.getElementById("topup-nominal").value;
+        let gambar = document.getElementById("topup-gambar").value;
+
+        if (nominal && gambar) {
+            topupData.push({ nominal, gambar });
+            displayTopupData();
+            topupForm.reset();
+        } else {
+            alert("Harap isi semua data!");
+        }
+    });
+
+    // === Hapus Paket Data ===
     window.hapusPaket = function (index) {
         paketData.splice(index, 1);
         displayPaketData();
     };
 
+    // === Hapus Top-Up Saldo ===
+    window.hapusTopup = function (index) {
+        topupData.splice(index, 1);
+        displayTopupData();
+    };
+
     displayPaketData();
+    displayTopupData();
 });
