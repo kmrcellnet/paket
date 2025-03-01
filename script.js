@@ -14,6 +14,7 @@ function displayPaketData(paketList) {
         let card = document.createElement("div");
         card.classList.add("card");
         card.innerHTML = `
+            <img src="${paket.gambar}" alt="${paket.nama}" class="icon">
             <h3>${paket.nama}</h3>
             <p>${paket.harga}</p>
             <button onclick="beliPaket('${paket.nama}')">Beli</button>
@@ -28,6 +29,7 @@ function displayTopup(topupList) {
         let card = document.createElement("div");
         card.classList.add("card");
         card.innerHTML = `
+            <img src="${topup.gambar}" alt="Top-Up" class="icon">
             <h3>Top-Up ${topup.nominal}</h3>
             <button onclick="topUpSaldo('${topup.nominal}')">Top-Up</button>
         `;
