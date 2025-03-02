@@ -3,38 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Checkout Top-Up</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Checkout Top-Up</h1>
-    </header>
-
-    <main>
+    <div class="checkout-container">
         <h2 id="game-title"></h2>
-        <label for="user-id">Masukkan ID Game:</label>
-        <input type="text" id="user-id" placeholder="Masukkan ID Anda">
 
-        <label for="amount">Pilih Nominal:</label>
-        <select id="amount">
-            <option value="10000">10 Diamonds - Rp10.000</option>
-            <option value="50000">50 Diamonds - Rp50.000</option>
-            <option value="100000">100 Diamonds - Rp100.000</option>
-        </select>
+        <div class="input-group">
+            <label for="user-id">🎮 Masukkan ID Game:</label>
+            <input type="text" id="user-id" placeholder="Masukkan ID Anda">
+        </div>
 
-        <button onclick="processCheckout()">Bayar Sekarang</button>
-    </main>
+        <div class="input-group">
+            <label for="amount">💎 Pilih Nominal:</label>
+            <div class="nominal-list">
+                <button class="nominal" data-value="10000">10 Diamonds - Rp10.000</button>
+                <button class="nominal" data-value="50000">50 Diamonds - Rp50.000</button>
+                <button class="nominal" data-value="100000">100 Diamonds - Rp100.000</button>
+            </div>
+        </div>
+
+        <button class="pay-btn" onclick="processCheckout()">💳 Bayar Sekarang</button>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const game = urlParams.get('game');
             document.getElementById('game-title').innerText = `Top-Up ${game}`;
+
+            // Pilih nominal dengan efek klik
+            document.querySelectorAll(".nominal").forEach(button => {
+                button.addEventListener("click", function() {
+                    document.querySelectorAll(".nominal").forEach(btn => btn.classList.remove("selected"));
+                    this.classList.add("selected");
+                });
+            });
         });
 
         function processCheckout() {
-            alert("Pembayaran berhasil!");
+            alert("✅ Pembayaran berhasil!");
         }
     </script>
 </body>
