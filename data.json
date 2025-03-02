@@ -10,5 +10,13 @@
         { "id": 2, "nominal": "Rp 50.000", "gambar": "assets/dana.png" },
         { "id": 3, "nominal": "Rp 100.000", "gambar": "assets/dana.png" }, 
         { "id": 4, "nominal": "Rp 150.000", "gambar": "assets/dana.png" }
+    ],
+    "gameTopup": [
+        { "id": 1, "game": "Mobile Legends", "nominal": "86 Diamonds", "harga": "Rp 20.000", "gambar": "assets/mlbb.png" },
+        { "id": 2, "game": "Mobile Legends", "nominal": "172 Diamonds", "harga": "Rp 40.000", "gambar": "assets/mlbb.png" },
+        { "id": 3, "game": "Free Fire", "nominal": "100 Diamonds", "harga": "Rp 15.000", "gambar": "assets/ff.png" },
+        { "id": 4, "game": "Free Fire", "nominal": "210 Diamonds", "harga": "Rp 30.000", "gambar": "assets/ff.png" },
+        { "id": 5, "game": "eFootball", "nominal": "300 Points", "harga": "Rp 50.000", "gambar": "assets/efootball.png" },
+        { "id": 6, "game": "eFootball", "nominal": "650 Points", "harga": "Rp 100.000", "gambar": "assets/efootball.png" }
     ]
 }
