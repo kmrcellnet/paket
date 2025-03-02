@@ -1,176 +1,35 @@
-/* Reset dasar */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    text-align: center;
 }
 
-/* Header lebih rapi & proporsional */
 header {
-    background-color: #007bff;
+    background: #007bff;
     color: white;
-    text-align: center;
-    padding: 20px; /* Lebih besar agar tidak terlalu sempit */
-    font-size: 22px;
+    padding: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
     font-weight: bold;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan lembut */
-    position: relative;
-}
-
-/* Agar tampilan tetap seimbang */
-@media (max-width: 600px) {
-    header {
-        font-size: 18px; /* Ukuran font lebih kecil di HP */
-        padding: 15px;
-    }
-}
-
-/* Konten utama */
-main {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Judul */
-h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 15px;
 }
 
 main {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Judul */
-h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Container Paket Data & Topup */
-.paket-container, .topup-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-}
-
-/* Kartu */
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: calc(50% - 20px); /* Agar 2 kolom di layar besar */
-    box-sizing: border-box;
-}
-
-/* Gambar */
-.icon {
-    width: 100px; /* Ukuran gambar disamakan */
-    height: auto;
-    margin-bottom: 5px;
-}
-
-/* Form */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-input, select {
-    width: 100%;
-    padding: 10px;
+.game-card {
     border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Tombol */
-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Responsif untuk Layar HP */
-@media (max-width: 600px) {
-    main {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .paket-container, .topup-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .card {
-        width: 100%; /* Agar memenuhi layar */
-        padding: 15px;
-    }
-
-    .icon {
-        width: 80px; /* Ukuran gambar lebih kecil di HP */
-    }
-
-    button {
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-.game-selection {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.game-selection input {
-    display: none;
-}
-
-.game-selection label {
+    padding: 10px;
+    margin: 10px;
     display: inline-block;
     cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 10px;
     transition: 0.3s;
 }
 
-.game-selection label img {
-    width: 80px;
-    height: auto;
-    border-radius: 10px;
-    transition: 0.3s;
+.game-card:hover {
+    background: #f4f4f4;
 }
-
-.game-selection input:checked + label {
-    border: 2px solid #007bff;
-}
-
