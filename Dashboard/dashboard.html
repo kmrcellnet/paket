@@ -3,80 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-    Dashboard Admin
-    <button onclick="logout()" style="float: right; background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Logout</button>
-</header>
-
+        <h1>Admin Dashboard</h1>
+    </header>
     <main>
-        <h2>Tambah Paket Data</h2>
-        <form id="paket-form">
-            <label for="paket-nama">Nama Paket:</label>
-            <input type="text" id="paket-nama" required>
-
-            <label for="paket-harga">Harga Paket:</label>
-            <input type="text" id="paket-harga" required>
-
-            <label for="paket-gambar">Pilih Gambar:</label>
-            <select id="paket-gambar">
-                <option value="assets/telkomsel.png">Telkomsel</option>
-                <option value="assets/indosat.png">Indosat</option>
-                <option value="assets/xl.png">XL</option>
-                <option value="assets/tri.png">Tri</option>
-                <option value="assets/smartfren.png">Smartfren</option>
-            </select>
-            <button type="submit">Tambah Paket</button>
-        <h2>Daftar Paket Data</h2>
-        <div id="paket-list" class="paket-container"></div>
-        </form>
-        
-        <h2>Tambah Top-Up Saldo</h2>
-        <form id="topup-form">
-            <label for="topup-nominal">Nominal:</label>
-            <input type="text" id="topup-nominal" required>
-
-            <label for="topup-gambar">Pilih Gambar:</label>
-            <select id="topup-gambar">
-                <option value="assets/dana.png">Dana</option>
-                <option value="assets/shopeepay.png">Shopeepay</option>
-        
-            </select>
-            <button type="submit">Tambah Top-Up</button>
-</form>
-
-        <h2>Daftar Top-Up</h2>
-        <div id="topup-list" class="paket-container"></div>
-
-        <h2>Tambah Top-Up Game</h2>
-<form id="game-form">
-    <label for="game-nama">Pilih Game:</label>
-    <div class="game-selection">
-        <input type="radio" id="ff" name="game" value="Free Fire" data-image="assets/ff.png">
-        <label for="ff"><img src="assets/ff.png" alt="Free Fire"></label>
-
-        <input type="radio" id="ml" name="game" value="Mobile Legends" data-image="assets/ml.png">
-        <label for="ml"><img src="assets/ml.png" alt="Mobile Legends"></label>
-
-        <input type="radio" id="efootball" name="game" value="eFootball" data-image="assets/efootball.png">
-        <label for="efootball"><img src="assets/efootball.png" alt="eFootball"></label>
-    </div>
-
-    <label for="game-nominal">Nominal:</label>
-    <input type="text" id="game-nominal" required>
-
-    <label for="game-harga">Harga:</label>
-    <input type="text" id="game-harga" required>
-
-    <button type="submit">Tambah Top-Up Game</button>
-</form>
-
-        
+        <section>
+            <h2>Tambah Paket Data</h2>
+            <form id="paket-form">
+                <input type="text" id="paket-nama" placeholder="Nama Paket">
+                <input type="number" id="paket-harga" placeholder="Harga">
+                <input type="text" id="paket-gambar" placeholder="URL Gambar">
+                <button type="submit">Tambah</button>
+            </form>
+        </section>
+        <section>
+            <h2>Tambah Top-Up Saldo</h2>
+            <form id="topup-form">
+                <input type="number" id="topup-nominal" placeholder="Nominal">
+                <input type="number" id="topup-harga" placeholder="Harga">
+                <input type="text" id="topup-gambar" placeholder="URL Gambar">
+                <button type="submit">Tambah</button>
+            </form>
+        </section>
     </main>
-
     <script src="dashboard.js"></script>
 </body>
 </html>
