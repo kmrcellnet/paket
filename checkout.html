@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Top-Up ML</title>
+    <title>Checkout Top-Up</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
             margin-bottom: 5px;
         }
 
-        input {
+        select, input, button {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -44,18 +44,24 @@
             border-radius: 5px;
         }
 
-        .lookup-btn {
+        .lookup-btn, .pay-btn {
             background: #007bff;
             color: white;
-            padding: 8px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            width: 100%;
         }
 
         .lookup-btn:hover {
             background: #0056b3;
+        }
+
+        .pay-btn {
+            background: #dc3545;
+            margin-top: 10px;
+        }
+
+        .pay-btn:hover {
+            background: #c82333;
         }
 
         #username-result {
@@ -65,7 +71,8 @@
 
         .nominal-list {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .nominal {
@@ -75,35 +82,29 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 30%;
+            width: 45%;
         }
 
         .nominal:hover {
             background: #218838;
         }
-
-        .pay-btn {
-            background: #dc3545;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .pay-btn:hover {
-            background: #c82333;
-        }
     </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h2>Top-Up Mobile Legends</h2>
+        <h2>Top-Up Game</h2>
 
         <div class="input-group">
-            <label for="user-id">🎮 Masukkan ID Game:</label>
+            <label for="game">🎮 Pilih Game:</label>
+            <select id="game" onchange="updateNominal()">
+                <option value="ml">Mobile Legends</option>
+                <option value="ff">Free Fire</option>
+                <option value="pubg">PUBG Mobile</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="user-id">🆔 Masukkan ID Game:</label>
             <input type="text" id="user-id" placeholder="Masukkan ID Anda">
             <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
             <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
@@ -111,11 +112,9 @@
         </div>
 
         <div class="input-group">
-            <label for="amount">💎 Pilih Nominal:</label>
-            <div class="nominal-list">
-                <button class="nominal" data-value="10000">10 Diamonds - Rp10.000</button>
-                <button class="nominal" data-value="50000">50 Diamonds - Rp50.000</button>
-                <button class="nominal" data-value="100000">100 Diamonds - Rp100.000</button>
+            <label for="amount">💎 Pilih Produk:</label>
+            <div class="nominal-list" id="nominal-container">
+                <!-- Tombol nominal akan ditambahkan lewat JavaScript -->
             </div>
         </div>
 
@@ -123,18 +122,78 @@
     </div>
 
     <script>
+        const nominalOptions = {
+            ml: [
+                { amount: "86 Diamonds", price: "Rp15.000" },
+                { amount: "172 Diamonds", price: "Rp30.000" },
+                { amount: "344 Diamonds", price: "Rp60.000" },
+                { amount: "514 Diamonds", price: "Rp90.000" },
+                { amount: "706 Diamonds", price: "Rp120.000" },
+                { amount: "1412 Diamonds", price: "Rp240.000" },
+                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
+                { amount: "Starlight Membership", price: "Rp149.000" },
+                { amount: "Starlight Plus Membership", price: "Rp299.000" },
+                { amount: "Twilight Pass", price: "Rp299.000" },
+                { amount: "Twilight Plus Pass", price: "Rp499.000" }
+            ],
+            ff: [
+                { amount: "70 Diamonds", price: "Rp10.000" },
+                { amount: "140 Diamonds", price: "Rp20.000" },
+                { amount: "280 Diamonds", price: "Rp40.000" },
+                { amount: "355 Diamonds", price: "Rp50.000" },
+                { amount: "720 Diamonds", price: "Rp100.000" },
+                { amount: "1440 Diamonds", price: "Rp200.000" }
+            ],
+            pubg: [
+                { amount: "60 UC", price: "Rp12.000" },
+                { amount: "180 UC", price: "Rp36.000" },
+                { amount: "600 UC", price: "Rp120.000" },
+                { amount: "1500 UC", price: "Rp300.000" },
+                { amount: "3000 UC", price: "Rp600.000" },
+                { amount: "8100 UC", price: "Rp1.500.000" }
+            ]
+        };
+
+        function updateNominal() {
+            let game = document.getElementById("game").value;
+            let nominalContainer = document.getElementById("nominal-container");
+            nominalContainer.innerHTML = "";
+
+            nominalOptions[game].forEach(option => {
+                let btn = document.createElement("button");
+                btn.classList.add("nominal");
+                btn.innerText = `${option.amount} - ${option.price}`;
+                btn.setAttribute("data-price", option.price);
+                btn.onclick = () => selectNominal(option.amount, option.price);
+                nominalContainer.appendChild(btn);
+            });
+        }
+
+        function selectNominal(amount, price) {
+            alert(`Anda memilih ${amount} dengan harga ${price}`);
+        }
+
         function lookupUsername() {
+            let game = document.getElementById("game").value;
             let userID = document.getElementById("user-id").value;
             let zoneID = document.getElementById("zone-id").value;
+            let fullID = userID + (zoneID ? `(${zoneID})` : "");
 
             if (!userID) {
                 alert("⚠️ Masukkan ID Game terlebih dahulu!");
                 return;
             }
 
-            let fullID = `${userID}(${zoneID})`;
+            let apiURL = "";
+            if (game === "ml") {
+                apiURL = `https://api.codashop.com/id/lookup?user_id=${fullID}`;
+            } else if (game === "ff") {
+                apiURL = `https://api.fflookup.com/?user_id=${userID}`;
+            } else if (game === "pubg") {
+                apiURL = `https://api.pubglookup.com/?user_id=${userID}`;
+            }
 
-            fetch(`https://api.codashop.com/id/lookup?user_id=${fullID}`)
+            fetch(apiURL)
                 .then(response => response.json())
                 .then(data => {
                     if (data.username) {
@@ -152,6 +211,9 @@
         function processCheckout() {
             alert("✅ Pembayaran berhasil!");
         }
+
+        // Set default game nominal saat halaman dimuat
+        updateNominal();
     </script>
 </body>
 </html>
