@@ -3,16 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Top-Up</title>
-    <link rel="stylesheet" href="">
+    <title>Checkout Top-Up ML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            background: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .lookup-btn {
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .lookup-btn:hover {
+            background: #0056b3;
+        }
+
+        #username-result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .nominal-list {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nominal {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 30%;
+        }
+
+        .nominal:hover {
+            background: #218838;
+        }
+
+        .pay-btn {
+            background: #dc3545;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .pay-btn:hover {
+            background: #c82333;
+        }
+    </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h2 id="game-title"></h2>
+        <h2>Top-Up Mobile Legends</h2>
 
         <div class="input-group">
             <label for="user-id">🎮 Masukkan ID Game:</label>
             <input type="text" id="user-id" placeholder="Masukkan ID Anda">
+            <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
+            <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
+            <p id="username-result"></p>
         </div>
 
         <div class="input-group">
@@ -26,121 +121,33 @@
 
         <button class="pay-btn" onclick="processCheckout()">💳 Bayar Sekarang</button>
     </div>
-    <style>
-        /* RESET CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-/* BODY STYLE */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #007bff, #00c6ff);
-    color: #fff;
-}
-
-/* CONTAINER */
-.checkout-container {
-    background: #fff;
-    color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    text-align: center;
-}
-
-/* JUDUL */
-.checkout-container h2 {
-    margin-bottom: 15px;
-}
-
-/* INPUT GROUP */
-.input-group {
-    margin: 15px 0;
-    text-align: left;
-}
-
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* NOMINAL PILIHAN */
-.nominal-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.nominal {
-    flex: 1;
-    padding: 10px;
-    background: #eee;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.nominal:hover {
-    background: #007bff;
-    color: white;
-}
-
-.nominal.selected {
-    background: #28a745;
-    color: white;
-}
-
-/* TOMBOL BAYAR */
-.pay-btn {
-    width: 100%;
-    padding: 12px;
-    background: #ff5722;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.pay-btn:hover {
-    background: #e64a19;
-}
-
-    </style>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const game = urlParams.get('game');
-            document.getElementById('game-title').innerText = `Top-Up ${game}`;
+        function lookupUsername() {
+            let userID = document.getElementById("user-id").value;
+            let zoneID = document.getElementById("zone-id").value;
 
-            // Pilih nominal dengan efek klik
-            document.querySelectorAll(".nominal").forEach(button => {
-                button.addEventListener("click", function() {
-                    document.querySelectorAll(".nominal").forEach(btn => btn.classList.remove("selected"));
-                    this.classList.add("selected");
+            if (!userID) {
+                alert("⚠️ Masukkan ID Game terlebih dahulu!");
+                return;
+            }
+
+            let fullID = `${userID}(${zoneID})`;
+
+            fetch(`https://api.codashop.com/id/lookup?user_id=${fullID}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.username) {
+                        document.getElementById("username-result").innerText = `👤 Username: ${data.username}`;
+                    } else {
+                        document.getElementById("username-result").innerText = "❌ ID tidak ditemukan!";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("username-result").innerText = "⚠️ Gagal mengambil data.";
                 });
-            });
-        });
+        }
 
         function processCheckout() {
             alert("✅ Pembayaran berhasil!");
