@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopUp Website</title>
+    <title>Codashop Clone</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>TopUp Game Murah</h1>
-        <nav>
-            <a href="Dashboard/dashboard.html">Dashboard</a>
-        </nav>
+        <h1>Top-Up Game Termurah</h1>
     </header>
 
     <main>
-        <h2>Pilih Game untuk Top-Up</h2>
-        <div id="game-list"></div>
+        <div class="game-list">
+            <div class="game" onclick="openGame('Mobile Legends')">
+                <img src="assets/img/ml.png" alt="Mobile Legends">
+                <p>Mobile Legends</p>
+            </div>
+            <div class="game" onclick="openGame('Free Fire')">
+                <img src="assets/img/ff.png" alt="Free Fire">
+                <p>Free Fire</p>
+            </div>
+            <div class="game" onclick="openGame('PUBG Mobile')">
+                <img src="assets/img/pubg.png" alt="PUBG Mobile">
+                <p>PUBG Mobile</p>
+            </div>
+        </div>
     </main>
 
     <script src="script.js"></script>
