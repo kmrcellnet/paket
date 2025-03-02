@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Memuat data ke index.html");
 
-    // Ambil data dari Local Storage atau gunakan data.json jika kosong
     let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
     let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
     let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
 
+    // Jika localStorage kosong, ambil data dari data.json
     if (paketData.length === 0 || topupData.length === 0 || gameData.length === 0) {
         fetch("data.json")
             .then(response => response.json())
@@ -18,46 +18,49 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem("topupData", JSON.stringify(topupData));
                 localStorage.setItem("gameData", JSON.stringify(gameData));
 
-                displayPaketData(paketData);
-                displayTopupData(topupData);
-                displayGameData(gameData);
+                displayPaketData();
+                displayTopupData();
+                displayGameData();
             })
             .catch(error => console.error("Error fetching data:", error));
     } else {
-        displayPaketData(paketData);
-        displayTopupData(topupData);
-        displayGameData(gameData);
+        displayPaketData();
+        displayTopupData();
+        displayGameData();
     }
 });
 
 // === Fungsi Tampilkan Paket Data ===
-function displayPaketData(paketList) {
+function displayPaketData() {
     let container = document.getElementById("paket-list");
     container.innerHTML = ""; 
 
-    paketList.forEach(paket => {
+    let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
+    paketData.forEach(paket => {
         let card = createCard(paket.gambar, paket.nama, paket.harga, `beliPaket('${paket.nama}')`, "Beli");
         container.appendChild(card);
     });
 }
 
 // === Fungsi Tampilkan Top-Up Saldo ===
-function displayTopupData(topupList) {
+function displayTopupData() {
     let container = document.getElementById("topup-list");
     container.innerHTML = ""; 
 
-    topupList.forEach(topup => {
+    let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
+    topupData.forEach(topup => {
         let card = createCard(topup.gambar, `Top-Up ${topup.nominal}`, topup.harga, `topUpSaldo('${topup.nominal}')`, "Top-Up");
         container.appendChild(card);
     });
 }
 
 // === Fungsi Tampilkan Top-Up Game ===
-function displayGameData(gameList) {
+function displayGameData() {
     let container = document.getElementById("game-list");
     container.innerHTML = ""; 
 
-    gameList.forEach(game => {
+    let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
+    gameData.forEach(game => {
         let card = createCard(game.gambar, `${game.game} - ${game.nominal}`, game.harga, `beliGame('${game.game}', '${game.nominal}')`, "Beli");
         container.appendChild(card);
     });
@@ -77,16 +80,16 @@ function createCard(image, title, price, onClickFunction, buttonText) {
 }
 
 // === Fungsi Beli Paket Data ===
-function beliPaket(namaPaket) {
+window.beliPaket = function (namaPaket) {
     alert(`Anda membeli ${namaPaket}`);
-}
+};
 
 // === Fungsi Top-Up Saldo ===
-function topUpSaldo(nominal) {
+window.topUpSaldo = function (nominal) {
     alert(`Anda melakukan top-up sebesar ${nominal}`);
-}
+};
 
 // === Fungsi Beli Top-Up Game ===
-function beliGame(game, nominal) {
+window.beliGame = function (game, nominal) {
     alert(`Anda membeli ${nominal} untuk ${game}`);
-}
+};
