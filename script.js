@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
         displayGameData(gameData);
     }
 
-    // Tampilkan data saat pertama kali halaman dibuka
+    // Muat data saat pertama kali
     loadData();
 
-    // Tambahkan listener untuk update otomatis jika data berubah dari admin dashboard
-    window.addEventListener("storage", function () {
-        console.log("🔄 Data berubah, memperbarui tampilan...");
+    // Cek perubahan setiap 2 detik
+    setInterval(() => {
+        console.log("🔄 Memeriksa perubahan data...");
         loadData();
-    });
+    }, 2000);
 
     function displayPaketData(paketList) {
         let container = document.getElementById("paket-list");
