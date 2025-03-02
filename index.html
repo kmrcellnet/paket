@@ -14,20 +14,24 @@
     <main>
         <div class="game-list">
             <div class="game" onclick="openGame('ml')">
-            <img src="assets/ml.png" alt="Mobile Legends">
-            <p>Mobile Legends</p>
-        </div>
+                <img src="assets/ml.png" alt="Mobile Legends">
+                <p>Mobile Legends</p>
+            </div>
             <div class="game" onclick="openGame('ff')">
-            <img src="assets/ff.png" alt="Free Fire">
-            <p>Free Fire</p>
-        </div>
+                <img src="assets/ff.png" alt="Free Fire">
+                <p>Free Fire</p>
+            </div>
             <div class="game" onclick="openGame('pubg')">
-            <img src="assets/pubg.png" alt="PUBG Mobile">
-            <p>PUBG Mobile</p>
-        </div>
+                <img src="assets/pubg.png" alt="PUBG Mobile">
+                <p>PUBG Mobile</p>
+            </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function openGame(game) {
+            window.location.href = `checkout.html?game=${game}`;
+        }
+    </script>
 </body>
 </html>
