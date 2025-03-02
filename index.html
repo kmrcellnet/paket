@@ -20,6 +20,29 @@
             <div class="topup-container" id="topup-list"></div>
         </section>
     </main>
+    <h2>Tambah Top-Up Game</h2>
+<form id="game-form">
+    <label for="game-nama">Pilih Game:</label>
+    <div class="game-selection">
+        <input type="radio" id="ff" name="game" value="Free Fire" data-image="assets/ff.png">
+        <label for="ff"><img src="assets/ff.png" alt="Free Fire"></label>
+
+        <input type="radio" id="ml" name="game" value="Mobile Legends" data-image="assets/ml.png">
+        <label for="ml"><img src="assets/ml.png" alt="Mobile Legends"></label>
+
+        <input type="radio" id="efootball" name="game" value="eFootball" data-image="assets/efootball.png">
+        <label for="efootball"><img src="assets/efootball.png" alt="eFootball"></label>
+    </div>
+
+    <label for="game-nominal">Nominal:</label>
+    <input type="text" id="game-nominal" required>
+
+    <label for="game-harga">Harga:</label>
+    <input type="text" id="game-harga" required>
+
+    <button type="submit">Tambah Top-Up Game</button>
+</form>
+
     <script src="script.js"></script>
     <script src="dashboard.js"></script>
 </body>
