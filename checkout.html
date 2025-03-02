@@ -85,14 +85,14 @@
             width: 45%;
         }
 
-        .nominal:hover {
+        .nominal:hover, .nominal.selected {
             background: #218838;
         }
     </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h2>Top-Up Game</h2>
+        <h2 id="game-title">Top-Up Game</h2>
 
         <div class="input-group">
             <label for="game">🎮 Pilih Game:</label>
@@ -164,13 +164,16 @@
                 btn.classList.add("nominal");
                 btn.innerText = `${option.amount} - ${option.price}`;
                 btn.setAttribute("data-price", option.price);
-                btn.onclick = () => selectNominal(option.amount, option.price);
+                btn.onclick = () => selectNominal(btn);
                 nominalContainer.appendChild(btn);
             });
+
+            document.getElementById("game-title").innerText = `Top-Up ${document.getElementById("game").options[document.getElementById("game").selectedIndex].text}`;
         }
 
-        function selectNominal(amount, price) {
-            alert(`Anda memilih ${amount} dengan harga ${price}`);
+        function selectNominal(btn) {
+            document.querySelectorAll(".nominal").forEach(button => button.classList.remove("selected"));
+            btn.classList.add("selected");
         }
 
         function lookupUsername() {
@@ -184,14 +187,7 @@
                 return;
             }
 
-            let apiURL = "";
-            if (game === "ml") {
-                apiURL = `https://api.codashop.com/id/lookup?user_id=${fullID}`;
-            } else if (game === "ff") {
-                apiURL = `https://api.fflookup.com/?user_id=${userID}`;
-            } else if (game === "pubg") {
-                apiURL = `https://api.pubglookup.com/?user_id=${userID}`;
-            }
+            let apiURL = `https://api.example.com/lookup?game=${game}&user_id=${fullID}`;
 
             fetch(apiURL)
                 .then(response => response.json())
@@ -212,7 +208,13 @@
             alert("✅ Pembayaran berhasil!");
         }
 
-        // Set default game nominal saat halaman dimuat
+        // Ambil game dari URL jika ada
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedGame = urlParams.get("game");
+        if (selectedGame && nominalOptions[selectedGame]) {
+            document.getElementById("game").value = selectedGame;
+        }
+
         updateNominal();
     </script>
 </body>
