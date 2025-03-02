@@ -9,12 +9,18 @@
 <body>
     <header>
         <h1>Dashboard Admin</h1>
-        <a href="../index.html">Kembali ke Beranda</a>
     </header>
 
     <main>
-        <h2>Kelola Data Top-Up</h2>
-        <div id="dashboard-content"></div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Game</th>
+                <th>Jumlah</th>
+                <th>Status</th>
+            </tr>
+            <tbody id="transaction-list"></tbody>
+        </table>
     </main>
 
     <script src="dashboard.js"></script>
