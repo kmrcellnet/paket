@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
     let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
 
-    // === Menampilkan Paket Data ===
+    // === Fungsi Menampilkan Paket Data ===
     function displayPaketData() {
         paketList.innerHTML = "";
         paketData.forEach((paket, index) => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("paketData", JSON.stringify(paketData));
     }
 
-    // === Menampilkan Top-Up Saldo ===
+    // === Fungsi Menampilkan Top-Up Saldo ===
     function displayTopupData() {
         topupList.innerHTML = "";
         topupData.forEach((topup, index) => {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("topupData", JSON.stringify(topupData));
     }
 
-    // === Menampilkan Top-Up Game ===
+    // === Fungsi Menampilkan Top-Up Game ===
     function displayGameData() {
         gameList.innerHTML = "";
         gameData.forEach((game, index) => {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("gameData", JSON.stringify(gameData));
     }
 
-    // === Tambah Paket Data ===
+    // === Fungsi Tambah Paket Data ===
     paketForm.addEventListener("submit", function (event) {
         event.preventDefault();
         let nama = document.getElementById("paket-nama").value;
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // === Tambah Top-Up Saldo ===
+    // === Fungsi Tambah Top-Up Saldo ===
     topupForm.addEventListener("submit", function (event) {
         event.preventDefault();
         let nominal = document.getElementById("topup-nominal").value;
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // === Tambah Top-Up Game ===
+    // === Fungsi Tambah Top-Up Game ===
     gameForm.addEventListener("submit", function (event) {
         event.preventDefault();
         let game = document.getElementById("game-nama").value;
@@ -108,25 +108,25 @@ document.addEventListener("DOMContentLoaded", function () {
         return card;
     }
 
-    // === Hapus Paket Data ===
+    // === Fungsi Hapus Paket Data ===
     window.hapusPaket = function (index) {
         paketData.splice(index, 1);
         displayPaketData();
     };
 
-    // === Hapus Top-Up Saldo ===
+    // === Fungsi Hapus Top-Up Saldo ===
     window.hapusTopup = function (index) {
         topupData.splice(index, 1);
         displayTopupData();
     };
 
-    // === Hapus Top-Up Game ===
+    // === Fungsi Hapus Top-Up Game ===
     window.hapusGame = function (index) {
         gameData.splice(index, 1);
         displayGameData();
     };
 
-    // Panggil fungsi untuk menampilkan data saat halaman dimuat
+    // === Panggil fungsi untuk menampilkan data saat halaman dimuat ===
     displayPaketData();
     displayTopupData();
     displayGameData();
