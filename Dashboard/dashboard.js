@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Dashboard admin dimuat...");
+
     const paketForm = document.getElementById("paket-form");
     const paketList = document.getElementById("paket-list");
 
@@ -12,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
     let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
 
-    // === Menampilkan Paket Data ===
+    displayPaketData();
+    displayTopupData();
+    displayGameData();
+
+    // === Fungsi Menampilkan Paket Data ===
     function displayPaketData() {
         paketList.innerHTML = "";
         paketData.forEach((paket, index) => {
@@ -22,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("paketData", JSON.stringify(paketData));
     }
 
-    // === Menampilkan Top-Up Saldo ===
+    // === Fungsi Menampilkan Top-Up Saldo ===
     function displayTopupData() {
         topupList.innerHTML = "";
         topupData.forEach((topup, index) => {
@@ -32,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("topupData", JSON.stringify(topupData));
     }
 
-    // === Menampilkan Top-Up Game ===
+    // === Fungsi Menampilkan Top-Up Game ===
     function displayGameData() {
         gameList.innerHTML = "";
         gameData.forEach((game, index) => {
@@ -42,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("gameData", JSON.stringify(gameData));
     }
 
-    // === Fungsi Membuat Item List ===
+    // === Fungsi Membuat List Item ===
     function createListItem(image, title, price, index, deleteFunction) {
         let card = document.createElement("div");
         card.classList.add("list-item");
@@ -68,24 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
             paketData.push({ nama, harga, gambar });
             displayPaketData();
             paketForm.reset();
-        } else {
-            alert("Harap isi semua data!");
-        }
-    });
-
-    // === Tambah Top-Up Saldo ===
-    topupForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        let nominal = document.getElementById("topup-nominal").value;
-        let harga = document.getElementById("topup-harga").value;
-        let gambar = document.getElementById("topup-gambar").value;
-
-        if (nominal && harga && gambar) {
-            topupData.push({ nominal, harga, gambar });
-            displayTopupData();
-            topupForm.reset();
-        } else {
-            alert("Harap isi semua data!");
         }
     });
 
@@ -101,30 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
             gameData.push({ game, nominal, harga, gambar });
             displayGameData();
             gameForm.reset();
-        } else {
-            alert("Harap isi semua data!");
         }
     });
 
-    // === Hapus Paket Data ===
-    window.hapusPaket = function (index) {
-        paketData.splice(index, 1);
-        displayPaketData();
-    };
-
-    // === Hapus Top-Up Saldo ===
-    window.hapusTopup = function (index) {
-        topupData.splice(index, 1);
-        displayTopupData();
-    };
-
-    // === Hapus Top-Up Game ===
-    window.hapusGame = function (index) {
-        gameData.splice(index, 1);
-        displayGameData();
-    };
-
-    displayPaketData();
-    displayTopupData();
-    displayGameData();
+    // === Fungsi Hapus Data ===
+    window.hapusPaket = function(index) { paketData.splice(index, 1); displayPaketData(); };
+    window.hapusTopup = function(index) { topupData.splice(index, 1); displayTopupData(); };
+    window.hapusGame = function(index) { gameData.splice(index, 1); displayGameData(); };
 });
