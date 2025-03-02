@@ -1,58 +1,84 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Memuat data ke index.html");
 
+    // Ambil data dari Local Storage atau gunakan data.json jika kosong
     let paketData = JSON.parse(localStorage.getItem("paketData")) || [];
     let topupData = JSON.parse(localStorage.getItem("topupData")) || [];
+    let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
 
-    if (paketData.length === 0) {
+    if (paketData.length === 0 || topupData.length === 0 || gameData.length === 0) {
         fetch("data.json")
             .then(response => response.json())
             .then(data => {
                 paketData = data.paketData;
                 topupData = data.topup;
+                gameData = data.gameTopup;
+
                 localStorage.setItem("paketData", JSON.stringify(paketData));
                 localStorage.setItem("topupData", JSON.stringify(topupData));
+                localStorage.setItem("gameData", JSON.stringify(gameData));
+
                 displayPaketData(paketData);
                 displayTopupData(topupData);
+                displayGameData(gameData);
             })
             .catch(error => console.error("Error fetching data:", error));
     } else {
         displayPaketData(paketData);
         displayTopupData(topupData);
+        displayGameData(gameData);
     }
 });
 
-// === Tampilkan Paket Data ===
+// === Fungsi Tampilkan Paket Data ===
 function displayPaketData(paketList) {
     let container = document.getElementById("paket-list");
-    container.innerHTML = "";
+    container.innerHTML = ""; 
+
     paketList.forEach(paket => {
-        let card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-            <img src="${paket.gambar}" alt="${paket.nama}" class="icon">
-            <h3>${paket.nama}</h3>
-            <p>${paket.harga}</p>
-            <button onclick="beliPaket('${paket.nama}')">Beli</button>
-        `;
+        let card = createCard(paket.gambar, paket.nama, paket.harga, `beliPaket('${paket.nama}')`, "Beli");
         container.appendChild(card);
     });
 }
 
-// === Tampilkan Top-Up Saldo ===
+// === Fungsi Tampilkan Top-Up Saldo ===
 function displayTopupData(topupList) {
     let container = document.getElementById("topup-list");
-    container.innerHTML = "";
+    container.innerHTML = ""; 
+
     topupList.forEach(topup => {
-        let card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-            <img src="${topup.gambar}" alt="Top-Up ${topup.nominal}" class="icon">
-            <h3>Top-Up ${topup.nominal}</h3>
-            <button onclick="topUpSaldo('${topup.nominal}')">Top-Up</button>
-        `;
+        let card = createCard(topup.gambar, `Top-Up ${topup.nominal}`, topup.harga, `topUpSaldo('${topup.nominal}')`, "Top-Up");
         container.appendChild(card);
     });
+}
+
+// === Fungsi Tampilkan Top-Up Game ===
+function displayGameData(gameList) {
+    let container = document.getElementById("game-list");
+    container.innerHTML = ""; 
+
+    gameList.forEach(game => {
+        let card = createCard(game.gambar, `${game.game} - ${game.nominal}`, game.harga, `beliGame('${game.game}', '${game.nominal}')`, "Beli");
+        container.appendChild(card);
+    });
+}
+
+// === Fungsi Membuat Kartu (Card) ===
+function createCard(image, title, price, onClickFunction, buttonText) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+        <img src="${image}" alt="${title}" class="icon">
+        <h3>${title}</h3>
+        <p>${price}</p>
+        <button onclick="${onClickFunction}">${buttonText}</button>
+    `;
+    return card;
+}
+
+// === Fungsi Beli Paket Data ===
+function beliPaket(namaPaket) {
+    alert(`Anda membeli ${namaPaket}`);
 }
 
 // === Fungsi Top-Up Saldo ===
@@ -60,7 +86,7 @@ function topUpSaldo(nominal) {
     alert(`Anda melakukan top-up sebesar ${nominal}`);
 }
 
-// === Fungsi Beli Paket Data ===
-function beliPaket(namaPaket) {
-    alert(`Anda membeli ${namaPaket}`);
+// === Fungsi Beli Top-Up Game ===
+function beliGame(game, nominal) {
+    alert(`Anda membeli ${nominal} untuk ${game}`);
 }
