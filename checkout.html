@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Top-Up</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="">
 </head>
 <body>
     <div class="checkout-container">
@@ -26,6 +26,106 @@
 
         <button class="pay-btn" onclick="processCheckout()">💳 Bayar Sekarang</button>
     </div>
+    <style>
+        /* RESET CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* BODY STYLE */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: #fff;
+}
+
+/* CONTAINER */
+.checkout-container {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* JUDUL */
+.checkout-container h2 {
+    margin-bottom: 15px;
+}
+
+/* INPUT GROUP */
+.input-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* NOMINAL PILIHAN */
+.nominal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nominal {
+    flex: 1;
+    padding: 10px;
+    background: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nominal:hover {
+    background: #007bff;
+    color: white;
+}
+
+.nominal.selected {
+    background: #28a745;
+    color: white;
+}
+
+/* TOMBOL BAYAR */
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    background: #e64a19;
+}
+
+    </style>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
