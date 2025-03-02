@@ -3,33 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <header>
-        <h1>Admin Dashboard</h1>
+        <h1>Dashboard Admin</h1>
+        <a href="../index.html">Kembali ke Beranda</a>
     </header>
+
     <main>
-        <section>
-            <h2>Tambah Paket Data</h2>
-            <form id="paket-form">
-                <input type="text" id="paket-nama" placeholder="Nama Paket">
-                <input type="number" id="paket-harga" placeholder="Harga">
-                <input type="text" id="paket-gambar" placeholder="URL Gambar">
-                <button type="submit">Tambah</button>
-            </form>
-        </section>
-        <section>
-            <h2>Tambah Top-Up Saldo</h2>
-            <form id="topup-form">
-                <input type="number" id="topup-nominal" placeholder="Nominal">
-                <input type="number" id="topup-harga" placeholder="Harga">
-                <input type="text" id="topup-gambar" placeholder="URL Gambar">
-                <button type="submit">Tambah</button>
-            </form>
-        </section>
+        <h2>Kelola Data Top-Up</h2>
+        <div id="dashboard-content"></div>
     </main>
+
     <script src="dashboard.js"></script>
 </body>
 </html>
