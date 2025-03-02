@@ -1,109 +1,16 @@
-/* Reset dasar */
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
-/* Header */
 header {
-    background-color: #007bff;
+    background: #ff5733;
     color: white;
-    text-align: center;
-    padding: 15px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Kontainer utama */
-main {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
 }
 
-/* Judul */
-h2 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Form input */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-input, select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-}
-
-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Daftar Paket */
-.paket-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Kartu Paket */
-.list-item {
-    background: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.paket-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    margin-right: 10px;
-}
-
-.paket-info {
-    flex-grow: 1;
-}
-
-/* Tombol Hapus */
-.delete-btn {
-    background-color: red;
-    border: none;
-    padding: 8px 12px;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-}
-
-.delete-btn:hover {
-    background-color: darkred;
+main {
+    padding: 20px;
 }
