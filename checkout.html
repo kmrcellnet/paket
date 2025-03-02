@@ -36,7 +36,7 @@
             margin-bottom: 5px;
         }
 
-        select, input, button {
+        input, button {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -85,23 +85,14 @@
             width: 45%;
         }
 
-        .nominal:hover, .nominal.selected {
+        .nominal:hover {
             background: #218838;
         }
     </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h2 id="game-title">Top-Up Game</h2>
-
-        <div class="input-group">
-            <label for="game">🎮 Pilih Game:</label>
-            <select id="game" onchange="updateNominal()">
-                <option value="ml">Mobile Legends</option>
-                <option value="ff">Free Fire</option>
-                <option value="pubg">PUBG Mobile</option>
-            </select>
-        </div>
+        <h2 id="game-title">Top-Up</h2>
 
         <div class="input-group">
             <label for="user-id">🆔 Masukkan ID Game:</label>
@@ -112,10 +103,8 @@
         </div>
 
         <div class="input-group">
-            <label for="amount">💎 Pilih Produk:</label>
-            <div class="nominal-list" id="nominal-container">
-                <!-- Tombol nominal akan ditambahkan lewat JavaScript -->
-            </div>
+            <label>💎 Pilih Produk:</label>
+            <div class="nominal-list" id="nominal-container"></div>
         </div>
 
         <button class="pay-btn" onclick="processCheckout()">💳 Bayar Sekarang</button>
@@ -154,8 +143,12 @@
             ]
         };
 
-        function updateNominal() {
-            let game = document.getElementById("game").value;
+        function getGameFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("game") || "ml"; // Default ke ML jika tidak ada parameter
+        }
+
+        function updateNominal(game) {
             let nominalContainer = document.getElementById("nominal-container");
             nominalContainer.innerHTML = "";
 
@@ -163,23 +156,23 @@
                 let btn = document.createElement("button");
                 btn.classList.add("nominal");
                 btn.innerText = `${option.amount} - ${option.price}`;
-                btn.setAttribute("data-price", option.price);
-                btn.onclick = () => selectNominal(btn);
+                btn.onclick = () => alert(`Anda memilih ${option.amount} dengan harga ${option.price}`);
                 nominalContainer.appendChild(btn);
             });
 
-            document.getElementById("game-title").innerText = `Top-Up ${document.getElementById("game").options[document.getElementById("game").selectedIndex].text}`;
-        }
+            let gameTitle = {
+                ml: "Mobile Legends",
+                ff: "Free Fire",
+                pubg: "PUBG Mobile"
+            };
 
-        function selectNominal(btn) {
-            document.querySelectorAll(".nominal").forEach(button => button.classList.remove("selected"));
-            btn.classList.add("selected");
+            document.getElementById("game-title").innerText = `Top-Up ${gameTitle[game]}`;
         }
 
         function lookupUsername() {
-            let game = document.getElementById("game").value;
             let userID = document.getElementById("user-id").value;
             let zoneID = document.getElementById("zone-id").value;
+            let game = getGameFromURL();
             let fullID = userID + (zoneID ? `(${zoneID})` : "");
 
             if (!userID) {
@@ -187,7 +180,14 @@
                 return;
             }
 
-            let apiURL = `https://api.example.com/lookup?game=${game}&user_id=${fullID}`;
+            let apiURL = "";
+            if (game === "ml") {
+                apiURL = `https://api.codashop.com/id/lookup?user_id=${fullID}`;
+            } else if (game === "ff") {
+                apiURL = `https://api.fflookup.com/?user_id=${userID}`;
+            } else if (game === "pubg") {
+                apiURL = `https://api.pubglookup.com/?user_id=${userID}`;
+            }
 
             fetch(apiURL)
                 .then(response => response.json())
@@ -208,14 +208,11 @@
             alert("✅ Pembayaran berhasil!");
         }
 
-        // Ambil game dari URL jika ada
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedGame = urlParams.get("game");
-        if (selectedGame && nominalOptions[selectedGame]) {
-            document.getElementById("game").value = selectedGame;
-        }
-
-        updateNominal();
+        // Set game dari URL saat halaman dimuat
+        window.onload = function () {
+            let gameFromURL = getGameFromURL();
+            updateNominal(gameFromURL);
+        };
     </script>
 </body>
 </html>
