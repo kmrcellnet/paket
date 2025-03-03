@@ -4,7 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Paket Data</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Gaya Umum */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container Checkout */
+.checkout-container {
+    background: white;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Judul */
+h2 {
+    color: #343a40;
+    text-align: center;
+}
+
+/* Input Form */
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Pilihan Paket */
+.nominal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.nominal {
+    background: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.nominal:hover {
+    background: #218838;
+}
+
+/* Tombol Pembayaran */
+.pay-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    background: #c82333;
+}
+
+/* Responsif */
+@media (max-width: 480px) {
+    .checkout-container {
+        width: 90%;
+    }
+
+    .nominal {
+        width: 100%;
+    }
+}
+
+    </style>
 </head>
 <body>
     <div class="checkout-container">
