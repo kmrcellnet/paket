@@ -144,17 +144,80 @@ input:focus {
     text-align: center;
     transition: 0.3s;
 }
+    
+/* Pilihan Nominal */
+.nominal-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* 2 kolom fleksibel */
+    gap: 10px;
+    justify-content: center;
+}
+
+.nominal {
+    background: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.nominal:hover {
+    background: #218838;
+}
+
+/* Efek Pilihan Nominal */
+.nominal.selected {
+    background: #ffc107;
+    color: black;
+    font-weight: bold;
+}
+
+/* Responsif untuk layar sangat kecil (misal 320px) */
+@media (max-width: 320px) {
+    .nominal-list {
+        grid-template-columns: repeat(2, minmax(100px, 1fr)); /* Pastikan tetap 2 kolom */
+    }
+}
+
+/* Tombol Pembayaran */
+.pay-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 100%;  /* Tombol penuh dalam container */
+    display: block;
+    margin: 20px auto;  /* Tengah secara horizontal */
+    text-align: center;
+    transition: 0.3s;
+}
 
 .pay-btn:hover {
     background: #1DA851;
 }
 
-
 /* Responsif */
 @media (max-width: 480px) {
     .checkout-container {
         width: 90%;
+        max-width: 400px; /* Tambahan agar lebih rapi */
         padding: 15px;
+        margin: auto; /* Tengah */
+    }
+
+    .nominal-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
+        gap: 10px;
     }
 
     .nominal {
