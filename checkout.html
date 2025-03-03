@@ -5,94 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Top-Up</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
-        }
+        /* Gaya Dasar */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
 
-        .checkout-container {
-            background: white;
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+/* Container Checkout */
+.checkout-container {
+    background: white;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
 
-        h2 {
-            color: #333;
-        }
+/* Efek Animasi */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
+/* Judul */
+h2 {
+    color: #343a40;
+    text-align: center;
+}
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
+/* Input Form */
+.input-group {
+    margin-bottom: 15px;
+}
 
-        input, button {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
 
-        .lookup-btn, .pay-btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
 
-        .lookup-btn:hover {
-            background: #0056b3;
-        }
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
 
-        .pay-btn {
-            background: #25D366;
-            margin-top: 10px;
-        }
+/* Tombol Cek Username */
+.lookup-btn {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .pay-btn:hover {
-            background: #1DA851;
-        }
+.lookup-btn:hover {
+    background: #0056b3;
+}
 
-        #username-result {
-            margin-top: 10px;
-            font-weight: bold;
-        }
+/* Hasil Pengecekan */
+#username-result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
 
-        .nominal-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+/* Pilihan Nominal */
+.nominal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
 
-        .nominal {
-            background: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 45%;
-        }
+.nominal {
+    background: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+}
 
-        .nominal:hover {
-            background: #218838;
-        }
+.nominal:hover {
+    background: #218838;
+}
 
-        .nominal.selected {
-            background: #ffc107;
-            color: black;
-        }
+/* Efek Pilihan Nominal */
+.nominal.selected {
+    background: #ffc107;
+    color: black;
+    font-weight: bold;
+}
+
+/* Tombol Pembayaran */
+.pay-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    background: #1DA851;
+}
+
+/* Responsif */
+@media (max-width: 480px) {
+    .checkout-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .nominal {
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
