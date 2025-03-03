@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Paket Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <h2 id="provider-title">Paket Data</h2>
+
+        <div class="input-group">
+            <label for="phone-number">📱 Masukkan Nomor HP:</label>
+            <input type="text" id="phone-number" placeholder="08xxxxxxxxxx">
+        </div>
+
+        <div class="input-group">
+            <label>📦 Pilih Paket:</label>
+            <div class="nominal-list" id="nominal-container"></div>
+        </div>
+
+        <button class="pay-btn" onclick="processCheckout()">💳 Bayar via WhatsApp</button>
+    </div>
+
+    <script>
+        const dataPackages = {
+            axis: [
+                { amount: "2GB 3 Hari", price: "Rp5.000" },
+                { amount: "5GB 7 Hari", price: "Rp15.000" }
+            ],
+            tri: [
+                { amount: "3GB 3 Hari", price: "Rp7.000" },
+                { amount: "6GB 7 Hari", price: "Rp20.000" }
+            ],
+            telkomsel: [
+                { amount: "2GB 3 Hari", price: "Rp10.000" },
+                { amount: "5GB 7 Hari", price: "Rp25.000" }
+            ]
+        };
+
+        function getProviderFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("provider") || "axis";
+        }
+
+        function updatePackages(provider) {
+            let nominalContainer = document.getElementById("nominal-container");
+            nominalContainer.innerHTML = "";
+
+            dataPackages[provider].forEach(option => {
+                let btn = document.createElement("button");
+                btn.classList.add("nominal");
+                btn.innerText = `${option.amount} - ${option.price}`;
+                btn.onclick = () => processCheckout(provider, option.amount, option.price);
+                nominalContainer.appendChild(btn);
+            });
+
+            document.getElementById("provider-title").innerText = `Paket Data ${provider.toUpperCase()}`;
+        }
+
+        function processCheckout(provider, amount, price) {
+            let phone = document.getElementById("phone-number").value;
+            if (!phone) {
+                alert("⚠️ Masukkan nomor HP terlebih dahulu!");
+                return;
+            }
+
+            let waNumber = "62895401353937";
+            let message = `Halo, saya ingin membeli paket ${amount} untuk ${provider.toUpperCase()}.\n📱 Nomor HP: ${phone}\n💰 Harga: ${price}`;
+            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            window.location.href = waLink;
+        }
+
+        window.onload = function () {
+            let provider = getProviderFromURL();
+            updatePackages(provider);
+        };
+    </script>
+</body>
+</html>
