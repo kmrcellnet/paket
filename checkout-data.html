@@ -5,112 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Paket Data</title>
     <style>
-        /* Gaya Umum */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-}
+        /* Reset & Body */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-/* Container Checkout */
-.checkout-container {
-    background: white;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: left;
-}
+        /* Container */
+        .checkout-container {
+            background: white;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-/* Judul */
-h2 {
-    color: #343a40;
-    text-align: center;
-}
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* Input Form */
-.input-group {
-    margin-bottom: 15px;
-}
+        /* Judul */
+        h2 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-label {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 5px;
-}
+        /* Input Form */
+        .input-group {
+            margin-bottom: 15px;
+        }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-}
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-input:focus {
-    border-color: #007bff;
-    outline: none;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
 
-/* Pilihan Paket */
-.nominal-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
 
-.nominal {
-    background: #28a745;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 45%;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    transition: 0.3s;
-}
+        /* Pilihan Paket */
+        .nominal-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
 
-.nominal:hover {
-    background: #218838;
-}
+        .nominal {
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Tombol Pembayaran */
-.pay-btn {
-    background: #dc3545;
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.3s;
-}
+        .nominal:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
 
-.pay-btn:hover {
-    background: #c82333;
-}
+        .nominal.selected {
+            background: #ffc107;
+            color: black;
+            font-weight: bold;
+            transform: scale(1.1);
+        }
 
-/* Responsif */
-@media (max-width: 480px) {
-    .checkout-container {
-        width: 90%;
-    }
+        /* Tombol Pembayaran */
+        .pay-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    .nominal {
-        width: 100%;
-    }
-}
+        .pay-btn:hover {
+            background: #1DA851;
+            transform: scale(1.05);
+        }
 
+        /* Responsif */
+        @media (max-width: 480px) {
+            .checkout-container {
+                width: 90%;
+            }
+
+            .nominal-list {
+                grid-template-columns: repeat(1, 1fr); /* Jadi 1 kolom di layar kecil */
+            }
+        }
     </style>
 </head>
 <body>
@@ -134,20 +158,12 @@ input:focus {
         const dataPackages = {
             axis: [
                 { amount: "2GB 3 Hari", price: "Rp5.000" },
-                { amount: "5GB 7 Hari", price: "Rp15.000" }, 
-                { amount: "2GB 3 Hari", price: "Rp5.000" },
-                { amount: "5GB 7 Hari", price: "Rp15.000" }, 
-                { amount: "2GB 3 Hari", price: "Rp5.000" },
-                { amount: "5GB 7 Hari", price: "Rp15.000" }  
+                { amount: "5GB 7 Hari", price: "Rp15.000" },
+                { amount: "10GB 30 Hari", price: "Rp30.000" }
             ],
             tri: [
                 { amount: "3GB 3 Hari", price: "Rp7.000" },
-                { amount: "6GB 7 Hari", price: "Rp20.000" }, 
-                { amount: "3GB 3 Hari", price: "Rp7.000" },
                 { amount: "6GB 7 Hari", price: "Rp20.000" }
-                 
-
-
             ],
             telkomsel: [
                 { amount: "2GB 3 Hari", price: "Rp10.000" },
@@ -168,20 +184,34 @@ input:focus {
                 let btn = document.createElement("button");
                 btn.classList.add("nominal");
                 btn.innerText = `${option.amount} - ${option.price}`;
-                btn.onclick = () => processCheckout(provider, option.amount, option.price);
+                btn.onclick = () => selectPackage(btn, provider, option.amount, option.price);
                 nominalContainer.appendChild(btn);
             });
 
             document.getElementById("provider-title").innerText = `Paket Data ${provider.toUpperCase()}`;
         }
 
-        function processCheckout(provider, amount, price) {
+        function selectPackage(button, provider, amount, price) {
+            document.querySelectorAll(".nominal").forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+            button.dataset.selected = JSON.stringify({ provider, amount, price });
+        }
+
+        function processCheckout() {
             let phone = document.getElementById("phone-number").value;
+            let selectedPackage = document.querySelector(".nominal.selected");
+
             if (!phone) {
                 alert("⚠️ Masukkan nomor HP terlebih dahulu!");
                 return;
             }
 
+            if (!selectedPackage) {
+                alert("⚠️ Pilih paket terlebih dahulu!");
+                return;
+            }
+
+            let { provider, amount, price } = JSON.parse(selectedPackage.dataset.selected);
             let waNumber = "62895401353937";
             let message = `Halo, saya ingin membeli paket ${amount} untuk ${provider.toUpperCase()}.\n📱 Nomor HP: ${phone}\n💰 Harga: ${price}`;
             let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
