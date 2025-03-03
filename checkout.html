@@ -134,17 +134,21 @@ input:focus {
     color: white;
     border: none;
     cursor: pointer;
-    width: 100%;
     padding: 12px;
-    border-radius: 5px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 100%;  /* Tombol penuh dalam container */
+    display: block;
+    margin: 20px auto;  /* Tengah secara horizontal */
+    text-align: center;
     transition: 0.3s;
 }
 
 .pay-btn:hover {
     background: #1DA851;
 }
+
 
 /* Responsif */
 @media (max-width: 480px) {
