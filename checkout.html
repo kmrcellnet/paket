@@ -165,7 +165,7 @@
             <label for="user-id">🆔 Masukkan ID Game:</label>
             <input type="text" id="user-id" placeholder="Masukkan ID Anda">
             <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
-            <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
+            <button class="lookup-btn">🔍 Cek Username</button>
         </div>
 
         <!-- Pilihan Produk -->
@@ -187,6 +187,12 @@
             ff: [
                 { amount: "70 💎", price: "Rp10.000" },
                 { amount: "140 💎", price: "Rp20.000" }
+            ],
+            pubg: [
+                { amount: "60 UC", price: "Rp15.000" },
+                { amount: "180 UC", price: "Rp45.000" },
+                { amount: "600 UC", price: "Rp150.000" },
+                { amount: "1500 UC", price: "Rp375.000" }
             ]
         };
 
@@ -212,7 +218,12 @@
                 nominalContainer.appendChild(btn);
             });
 
-            document.getElementById("game-title").textContent = `Top-Up ${game === "ml" ? "Mobile Legends" : "Free Fire"}`;
+            let gameTitle = "Top-Up ";
+            if (game === "ml") gameTitle += "Mobile Legends";
+            else if (game === "ff") gameTitle += "Free Fire";
+            else if (game === "pubg") gameTitle += "PUBG Mobile";
+
+            document.getElementById("game-title").textContent = gameTitle;
         }
 
         function processCheckout() {
