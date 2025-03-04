@@ -165,7 +165,7 @@
             <label for="user-id">🆔 Masukkan ID Game:</label>
             <input type="text" id="user-id" placeholder="Masukkan ID Anda">
             <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
-            <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
+            <button class="lookup-btn">🔍 Cek Username</button>
         </div>
 
         <!-- Pilihan Produk -->
@@ -182,20 +182,19 @@
         const nominalOptions = {
             ml: [
                 { amount: "86 💎", price: "Rp15.000" },
-                { amount: "172 💎", price: "Rp30.000" }
-            ],
-            ff: [
-                { amount: "70 💎", price: "Rp10.000" },
-                { amount: "140 💎", price: "Rp20.000" }
+                { amount: "172 💎", price: "Rp30.000" },
+                { amount: "344 💎", price: "Rp60.000" },
+                { amount: "514 💎", price: "Rp90.000" },
+                { amount: "706 💎", price: "Rp120.000" },
+                { amount: "1412 💎", price: "Rp240.000" },
+                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
+                { amount: "Starlight Membership", price: "Rp149.000" },
+                { amount: "Starlight Plus Membership", price: "Rp299.000" }
             ]
         };
 
-        function getGameFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get("game") || "ml";
-        }
-
-        function updateNominal(game) {
+        function updateNominal() {
+            let game = "ml";
             let nominalContainer = document.getElementById("nominal-container");
             nominalContainer.innerHTML = "";
 
@@ -212,7 +211,7 @@
                 nominalContainer.appendChild(btn);
             });
 
-            document.getElementById("game-title").textContent = `Top-Up ${game === "ml" ? "Mobile Legends" : "Free Fire"}`;
+            document.getElementById("game-title").innerText = "Top-Up Mobile Legends";
         }
 
         function processCheckout() {
@@ -229,9 +228,7 @@
             alert(`Checkout: ${nominal}, Harga: ${price}`);
         }
 
-        window.onload = function () {
-            updateNominal(getGameFromURL());
-        };
+        window.onload = updateNominal;
     </script>
 </body>
 </html>
