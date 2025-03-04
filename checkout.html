@@ -6,161 +6,164 @@
     <title>Checkout Top-Up</title>
     <style>
         /* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-/* Container Checkout */
-.checkout-container {
-    background: white;
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-}
+        /* Container Checkout */
+        .checkout-container {
+            background: #1e1e1e;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-/* Efek Animasi */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        /* Efek Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* Judul */
-h2 {
-    color: #343a40;
-    margin-bottom: 15px;
-}
+        /* Judul */
+        h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
 
-/* Input Form */
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
+        /* Input Form */
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
 
-label {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 5px;
-}
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-}
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #222;
+            color: #ffffff;
+            transition: 0.3s;
+        }
 
-input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
 
-/* Tombol Cek Username */
-.lookup-btn {
-    width: 100%;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        /* Tombol Cek Username */
+        .lookup-btn {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.lookup-btn:hover {
-    background: #0056b3;
-}
+        .lookup-btn:hover {
+            background: #0056b3;
+        }
 
-/* Pilihan Nominal */
-.nominal-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
-    gap: 10px;
-    justify-content: center;
-}
+        /* Pilihan Nominal */
+        .nominal-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            justify-content: center;
+        }
 
-.nominal {
-    background: #28a745;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}
+        .nominal {
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
+        }
 
-.nominal:hover {
-    background: #218838;
-    transform: scale(1.05);
-}
+        .nominal:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
 
-/* Efek Pilihan Nominal */
-.nominal.selected {
-    background: #ffc107;
-    color: black;
-    font-weight: bold;
-    transform: scale(1.1);
-}
+        /* Efek Pilihan Nominal */
+        .nominal.selected {
+            background: #ffc107;
+            color: black;
+            font-weight: bold;
+            transform: scale(1.1);
+        }
 
-/* Tombol Pembayaran */
-.pay-btn {
-    background: #25D366;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    width: 100%;  /* Tombol penuh dalam container */
-    display: block;
-    margin-top: 20px;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}
+        /* Tombol Pembayaran */
+        .pay-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
+        }
 
-.pay-btn:hover {
-    background: #1DA851;
-    transform: scale(1.05);
-}
+        .pay-btn:hover {
+            background: #1DA851;
+            transform: scale(1.05);
+        }
 
-/* Responsif */
-@media (max-width: 480px) {
-    .checkout-container {
-        width: 90%;
-        max-width: 400px;
-        padding: 15px;
-    }
-    
-    .nominal-list {
-        grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
-    }
-}
+        /* Responsif */
+        @media (max-width: 480px) {
+            .checkout-container {
+                width: 90%;
+                max-width: 400px;
+                padding: 15px;
+            }
+
+            .nominal-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
     </style>
 </head>
@@ -188,29 +191,11 @@ input:focus {
         const nominalOptions = {
             ml: [
                 { amount: "86 Diamonds", price: "Rp15.000" },
-                { amount: "172 Diamonds", price: "Rp30.000" },
-                { amount: "344 Diamonds", price: "Rp60.000" },
-                { amount: "514 Diamonds", price: "Rp90.000" },
-                { amount: "706 Diamonds", price: "Rp120.000" },
-                { amount: "1412 Diamonds", price: "Rp240.000" },
-                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
-                { amount: "Starlight Membership", price: "Rp149.000" },
-                { amount: "Starlight Plus Membership", price: "Rp299.000" }
+                { amount: "172 Diamonds", price: "Rp30.000" }
             ],
             ff: [
                 { amount: "70 Diamonds", price: "Rp10.000" },
-                { amount: "140 Diamonds", price: "Rp20.000" },
-                { amount: "280 Diamonds", price: "Rp40.000" },
-                { amount: "355 Diamonds", price: "Rp50.000" },
-                { amount: "720 Diamonds", price: "Rp100.000" },
-                { amount: "1440 Diamonds", price: "Rp200.000" }
-            ],
-            pubg: [
-                { amount: "60 UC", price: "Rp12.000" },
-                { amount: "180 UC", price: "Rp36.000" },
-                { amount: "600 UC", price: "Rp120.000" },
-                { amount: "1500 UC", price: "Rp300.000" },
-                { amount: "3000 UC", price: "Rp600.000" }
+                { amount: "140 Diamonds", price: "Rp20.000" }
             ]
         };
 
@@ -236,47 +221,25 @@ input:focus {
                 nominalContainer.appendChild(btn);
             });
 
-            let gameTitle = {
-                ml: "Mobile Legends",
-                ff: "Free Fire",
-                pubg: "PUBG Mobile"
-            };
-
+            let gameTitle = { ml: "Mobile Legends", ff: "Free Fire" };
             document.getElementById("game-title").innerText = `Top-Up ${gameTitle[game]}`;
         }
 
         function processCheckout() {
             let userID = document.getElementById("user-id").value;
-            let zoneID = document.getElementById("zone-id").value;
             let game = getGameFromURL();
-            let gameTitle = {
-                ml: "Mobile Legends",
-                ff: "Free Fire",
-                pubg: "PUBG Mobile"
-            };
-
             let selectedNominal = document.querySelector(".nominal.selected");
-            if (!selectedNominal) {
-                alert("⚠️ Pilih nominal terlebih dahulu!");
+
+            if (!selectedNominal || !userID) {
+                alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
                 return;
             }
 
             let nominal = selectedNominal.getAttribute("data-amount");
             let price = selectedNominal.getAttribute("data-price");
 
-            if (!userID) {
-                alert("⚠️ Masukkan ID Game terlebih dahulu!");
-                return;
-            }
-
-            let fullID = userID + (zoneID ? `(${zoneID})` : "");
-            let waNumber = "62895401353937"; // Ganti dengan nomor admin WhatsApp
-            let message = `Halo, saya ingin top-up ${gameTitle[game]}.\n\n` +
-                          `🆔 ID Game: ${fullID}\n` +
-                          `💎 Produk: ${nominal}\n` +
-                          `💰 Harga: ${price}\n\n` +
-                          `Mohon konfirmasi pembayaran. Terima kasih!`;
-
+            let waNumber = "62895401353937";
+            let message = `Halo, saya ingin top-up ${game.toUpperCase()}.\n🆔 ID Game: ${userID}\n💎 Produk: ${nominal}\n💰 Harga: ${price}`;
             let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
             window.location.href = waLink;
         }
