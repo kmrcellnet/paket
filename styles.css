@@ -6,12 +6,20 @@ body {
     background-color: #f8f9fa;
 }
 
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    font-size: 20px;
-}
+/* Header Elegan */
+        header {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
 
 .game-list {
     display: grid;
