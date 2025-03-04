@@ -221,18 +221,32 @@
         }
 
         function processCheckout() {
-            let userID = document.getElementById("user-id").value;
-            let selectedNominal = document.querySelector(".nominal.selected");
+    let userID = document.getElementById("user-id").value.trim();
+    let zoneID = document.getElementById("zone-id").value.trim();
+    let selectedNominal = document.querySelector(".nominal.selected");
 
-            if (!selectedNominal || !userID) {
-                alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
-                return;
-            }
+    if (!selectedNominal || !userID) {
+        alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
+        return;
+    }
 
-            let waNumber = "62895401353937";
-            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Halo, saya ingin top-up ${selectedNominal.innerText}`)}`;
-            window.location.href = waLink;
-        }
+    let nominal = selectedNominal.getAttribute("data-amount");
+    let price = selectedNominal.getAttribute("data-price");
+    let game = document.getElementById("game-title").innerText.replace("Top-Up ", "");
+
+    let fullID = zoneID ? `${userID} (${zoneID})` : userID;
+
+    let waNumber = "62895401353937";
+    let waMessage = `Halo, saya ingin melakukan top-up:\n\n` +
+                    `🎮 Game: ${game}\n` +
+                    `🆔 ID Game: ${fullID}\n` +
+                    `💎 Produk: ${nominal}\n` +
+                    `💰 Harga: ${price}\n\n` +
+                    `Mohon konfirmasi cara pembayarannya. Terima kasih!`;
+
+    let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+    window.location.href = waLink;
+}
 
         window.onload = function () {
             updateNominal(getGameFromURL());
