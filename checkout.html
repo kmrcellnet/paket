@@ -159,10 +159,6 @@
                 max-width: 400px;
                 padding: 15px;
             }
-
-            .nominal-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
     </style>
@@ -191,11 +187,22 @@
         const nominalOptions = {
             ml: [
                 { amount: "86 Diamonds", price: "Rp15.000" },
-                { amount: "172 Diamonds", price: "Rp30.000" }
+                { amount: "172 Diamonds", price: "Rp30.000" },
+                { amount: "344 Diamonds", price: "Rp60.000" },
+                { amount: "514 Diamonds", price: "Rp90.000" },
+                { amount: "706 Diamonds", price: "Rp120.000" },
+                { amount: "1412 Diamonds", price: "Rp240.000" },
+                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
+                { amount: "Starlight Membership", price: "Rp149.000" },
+                { amount: "Starlight Plus Membership", price: "Rp299.000" }
             ],
             ff: [
                 { amount: "70 Diamonds", price: "Rp10.000" },
-                { amount: "140 Diamonds", price: "Rp20.000" }
+                { amount: "140 Diamonds", price: "Rp20.000" },
+                { amount: "280 Diamonds", price: "Rp40.000" },
+                { amount: "355 Diamonds", price: "Rp50.000" },
+                { amount: "720 Diamonds", price: "Rp100.000" },
+                { amount: "1440 Diamonds", price: "Rp200.000" }
             ]
         };
 
@@ -227,7 +234,6 @@
 
         function processCheckout() {
             let userID = document.getElementById("user-id").value;
-            let game = getGameFromURL();
             let selectedNominal = document.querySelector(".nominal.selected");
 
             if (!selectedNominal || !userID) {
@@ -239,14 +245,12 @@
             let price = selectedNominal.getAttribute("data-price");
 
             let waNumber = "62895401353937";
-            let message = `Halo, saya ingin top-up ${game.toUpperCase()}.\n🆔 ID Game: ${userID}\n💎 Produk: ${nominal}\n💰 Harga: ${price}`;
-            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Halo, saya ingin top-up ${nominal}, harga ${price}`)}`;
             window.location.href = waLink;
         }
 
         window.onload = function () {
-            let gameFromURL = getGameFromURL();
-            updateNominal(gameFromURL);
+            updateNominal(getGameFromURL());
         };
     </script>
 </body>
