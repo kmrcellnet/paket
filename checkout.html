@@ -37,6 +37,11 @@
         h2 {
             color: #ffffff;
             margin-bottom: 15px;
+            font-size: 22px;
+            text-align: center;
+            white-space: normal;
+            overflow: visible;
+            word-wrap: break-word;
         }
 
         /* Kotak Input ID Game */
@@ -177,22 +182,11 @@
         const nominalOptions = {
             ml: [
                 { amount: "86 💎", price: "Rp15.000" },
-                { amount: "172 💎", price: "Rp30.000" },
-                { amount: "344 💎", price: "Rp60.000" },
-                { amount: "514 💎", price: "Rp90.000" },
-                { amount: "706 💎", price: "Rp120.000" },
-                { amount: "1412 💎", price: "Rp240.000" },
-                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
-                { amount: "Starlight Membership", price: "Rp149.000" },
-                { amount: "Starlight Plus Membership", price: "Rp299.000" }
+                { amount: "172 💎", price: "Rp30.000" }
             ],
             ff: [
                 { amount: "70 💎", price: "Rp10.000" },
-                { amount: "140 💎", price: "Rp20.000" },
-                { amount: "280 💎", price: "Rp40.000" },
-                { amount: "355 💎", price: "Rp50.000" },
-                { amount: "720 💎", price: "Rp100.000" },
-                { amount: "1440 💎", price: "Rp200.000" }
+                { amount: "140 💎", price: "Rp20.000" }
             ]
         };
 
@@ -208,6 +202,8 @@
             nominalOptions[game].forEach(option => {
                 let btn = document.createElement("button");
                 btn.classList.add("nominal");
+                btn.setAttribute("data-amount", option.amount);
+                btn.setAttribute("data-price", option.price);
                 btn.innerText = `${option.amount} - ${option.price}`;
                 btn.onclick = function () {
                     document.querySelectorAll(".nominal").forEach(btn => btn.classList.remove("selected"));
@@ -216,37 +212,22 @@
                 nominalContainer.appendChild(btn);
             });
 
-            let gameTitle = { ml: "Mobile Legends", ff: "Free Fire" };
-            document.getElementById("game-title").innerText = `Top-Up ${gameTitle[game]}`;
+            document.getElementById("game-title").textContent = `Top-Up ${game === "ml" ? "Mobile Legends" : "Free Fire"}`;
         }
 
         function processCheckout() {
-    let userID = document.getElementById("user-id").value.trim();
-    let zoneID = document.getElementById("zone-id").value.trim();
-    let selectedNominal = document.querySelector(".nominal.selected");
+            let userID = document.getElementById("user-id").value.trim();
+            let selectedNominal = document.querySelector(".nominal.selected");
 
-    if (!selectedNominal || !userID) {
-        alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
-        return;
-    }
+            if (!selectedNominal || !userID) {
+                alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
+                return;
+            }
 
-    let nominal = selectedNominal.getAttribute("data-amount");
-    let price = selectedNominal.getAttribute("data-price");
-    let game = document.getElementById("game-title").innerText.replace("Top-Up ", "");
-
-    let fullID = zoneID ? `${userID} (${zoneID})` : userID;
-
-    let waNumber = "62895401353937";
-    let waMessage = `Halo, saya ingin melakukan top-up:\n\n` +
-                    `🎮 Game: ${game}\n` +
-                    `🆔 ID Game: ${fullID}\n` +
-                    `💎 Produk: ${nominal}\n` +
-                    `💰 Harga: ${price}\n\n` +
-                    `Mohon konfirmasi cara pembayarannya. Terima kasih!`;
-
-    let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
-    window.location.href = waLink;
-}
+            let nominal = selectedNominal.getAttribute("data-amount");
+            let price = selectedNominal.getAttribute("data-price");
+            alert(`Checkout: ${nominal}, Harga: ${price}`);
+        }
 
         window.onload = function () {
             updateNominal(getGameFromURL());
