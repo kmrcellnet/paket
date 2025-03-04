@@ -39,9 +39,6 @@
             margin-bottom: 15px;
             font-size: 22px;
             text-align: center;
-            white-space: normal;
-            overflow: visible;
-            word-wrap: break-word;
         }
 
         /* Kotak Input ID Game */
@@ -50,7 +47,6 @@
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
-            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
             text-align: left;
         }
 
@@ -70,25 +66,12 @@
             color: #ffffff;
         }
 
-        .lookup-btn {
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
         /* Pilihan Produk */
         .nominal-container {
             background: #2a2a2a;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
+            margin-top: 15px;
         }
 
         .nominal-list {
@@ -110,7 +93,6 @@
             font-weight: 600;
             text-align: center;
             transition: 0.3s;
-            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
         }
 
         .nominal:hover {
@@ -136,23 +118,12 @@
             font-weight: bold;
             border-radius: 8px;
             width: 100%;
-            display: block;
             margin-top: 20px;
-            text-align: center;
         }
 
         .pay-btn:hover {
             background: #1DA851;
             transform: scale(1.05);
-        }
-
-        /* Responsif */
-        @media (max-width: 480px) {
-            .checkout-container {
-                width: 90%;
-                max-width: 400px;
-                padding: 15px;
-            }
         }
     </style>
 </head>
@@ -165,7 +136,6 @@
             <label for="user-id">🆔 Masukkan ID Game:</label>
             <input type="text" id="user-id" placeholder="Masukkan ID Anda">
             <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
-            <button class="lookup-btn">🔍 Cek Username</button>
         </div>
 
         <!-- Pilihan Produk -->
@@ -237,7 +207,13 @@
 
             let nominal = selectedNominal.getAttribute("data-amount");
             let price = selectedNominal.getAttribute("data-price");
-            alert(`Checkout: ${nominal}, Harga: ${price}`);
+            let game = document.getElementById("game-title").textContent.replace("Top-Up ", "");
+
+            let waNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
+            let waMessage = `Halo, saya ingin membeli ${nominal} untuk ${game}.\n\n🆔 ID Game: ${userID}\n💰 Harga: ${price}\n\nMohon konfirmasi pembayaran. Terima kasih!`;
+
+            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+            window.open(waLink, "_blank");
         }
 
         window.onload = function () {
