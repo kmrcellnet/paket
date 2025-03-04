@@ -4,14 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Top-Up</title>
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <h2 id="game-title">Top-Up Mobile Legends</h2>
+
+        <!-- Input ID Game -->
+        <div class="input-group">
+            <label for="user-id">🆔 Masukkan ID Game:</label>
+            <input type="text" id="user-id" placeholder="Masukkan ID Anda">
+            <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
+            <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
+            <p id="username-result"></p>
+        </div>
+
+        <!-- Pilihan Produk -->
+        <div class="input-group">
+            <label>💎 Pilih Nominal:</label>
+            <div class="nominal-list" id="nominal-container"></div>
+        </div>
+
+        <!-- Metode Pembayaran -->
+        <div class="input-group">
+            <label>💰 Pilih Pembayaran:</label>
+            <div class="payment-list">
+                <button class="payment-method" data-method="DANA">DANA</button>
+                <button class="payment-method" data-method="OVO">OVO</button>
+                <button class="payment-method" data-method="GoPay">GoPay</button>
+                <button class="payment-method" data-method="Bank">Transfer Bank</button>
+            </div>
+        </div>
+
+        <!-- Ringkasan Pesanan -->
+        <div class="summary">
+            <p><strong>Nominal:</strong> <span id="summary-nominal">-</span></p>
+            <p><strong>Harga:</strong> <span id="summary-price">-</span></p>
+            <p><strong>Metode Bayar:</strong> <span id="summary-payment">-</span></p>
+        </div>
+
+        <button class="pay-btn" onclick="processCheckout()">💳 Bayar Sekarang</button>
+    </div>
+
+    <script>
+        const nominalOptions = [
+            { amount: "86 💎", price: 15000, discount: 14000 },
+            { amount: "172 💎", price: 30000, discount: 28000 },
+            { amount: "344 💎", price: 60000, discount: 55000 },
+            { amount: "514 💎", price: 90000, discount: 85000 },
+            { amount: "706 💎", price: 120000, discount: 110000 }
+        ];
+
+        function updateNominal() {
+            let nominalContainer = document.getElementById("nominal-container");
+            nominalContainer.innerHTML = "";
+
+            nominalOptions.forEach(option => {
+                let btn = document.createElement("button");
+                btn.classList.add("nominal");
+                btn.innerHTML = `${option.amount} <br> <small><s>Rp${option.price.toLocaleString()}</s> <strong>Rp${option.discount.toLocaleString()}</strong></small>`;
+                btn.setAttribute("data-amount", option.amount);
+                btn.setAttribute("data-price", option.discount);
+                btn.onclick = function () {
+                    document.querySelectorAll(".nominal").forEach(b => b.classList.remove("selected"));
+                    this.classList.add("selected");
+                    document.getElementById("summary-nominal").innerText = option.amount;
+                    document.getElementById("summary-price").innerText = `Rp${option.discount.toLocaleString()}`;
+                };
+                nominalContainer.appendChild(btn);
+            });
         }
 
+        function selectPayment() {
+            document.querySelectorAll(".payment-method").forEach(button => {
+                button.addEventListener("click", function () {
+                    document.querySelectorAll(".payment-method").forEach(b => b.classList.remove("selected"));
+                    this.classList.add("selected");
+                    document.getElementById("summary-payment").innerText = this.innerText;
+                });
+            });
+        }
+
+        function processCheckout() {
+            let userID = document.getElementById("user-id").value;
+            let nominal = document.getElementById("summary-nominal").innerText;
+            let price = document.getElementById("summary-price").innerText;
+            let payment = document.getElementById("summary-payment").innerText;
+
+            if (userID === "" || nominal === "-" || payment === "-") {
+                alert("⚠️ Masukkan ID, pilih nominal, dan metode pembayaran!");
+                return;
+            }
+
+            alert(`✅ Pesanan Anda:\nID: ${userID}\nNominal: ${nominal}\nHarga: ${price}\nPembayaran: ${payment}`);
+        }
+
+        window.onload = function () {
+            updateNominal();
+            selectPayment();
+        };
+    </script>
+
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #121212;
@@ -23,7 +119,7 @@
             padding: 20px;
         }
 
-        /* Container Checkout */
+        /* Container */
         .checkout-container {
             background: #1e1e1e;
             max-width: 400px;
@@ -35,223 +131,39 @@
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Efek Animasi */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Judul */
-        h2 {
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        /* Input Form */
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 5px;
-        }
-
+        /* Input Group */
+        .input-group { margin-bottom: 15px; text-align: left; }
+        label { font-weight: 600; display: block; margin-bottom: 5px; }
         input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            font-size: 16px;
-            background: #222;
-            color: #ffffff;
-            transition: 0.3s;
+            width: 100%; padding: 10px; border: 1px solid #444;
+            border-radius: 5px; font-size: 16px; background: #222;
+            color: #ffffff; transition: 0.3s;
         }
 
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        /* Tombol */
+        .lookup-btn, .pay-btn, .nominal, .payment-method {
+            width: 100%; padding: 12px; border-radius: 5px;
+            font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: 0.3s; text-align: center;
         }
 
-        /* Tombol Cek Username */
-        .lookup-btn {
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .lookup-btn:hover {
-            background: #0056b3;
-        }
+        .lookup-btn { background: #007bff; color: white; border: none; }
+        .lookup-btn:hover { background: #0056b3; }
 
         /* Pilihan Nominal */
-        .nominal-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            justify-content: center;
-        }
+        .nominal-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .nominal { background: #28a745; color: white; border: none; }
+        .nominal:hover, .nominal.selected { background: #ffc107; color: black; }
 
-        .nominal {
-            background: #28a745;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
-        }
+        /* Metode Pembayaran */
+        .payment-list { display: flex; gap: 10px; }
+        .payment-method { background: #444; color: white; border: none; }
+        .payment-method.selected { background: #25D366; }
 
-        .nominal:hover {
-            background: #218838;
-            transform: scale(1.05);
-        }
-
-        /* Efek Pilihan Nominal */
-        .nominal.selected {
-            background: #ffc107;
-            color: black;
-            font-weight: bold;
-            transform: scale(1.1);
-        }
-
-        /* Tombol Pembayaran */
-        .pay-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            width: 100%;
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
-        }
-
-        .pay-btn:hover {
-            background: #1DA851;
-            transform: scale(1.05);
-        }
-
-        /* Responsif */
-        @media (max-width: 480px) {
-            .checkout-container {
-                width: 90%;
-                max-width: 400px;
-                padding: 15px;
-            }
-        }
+        /* Tombol Bayar */
+        .pay-btn { background: #25D366; color: white; border: none; }
+        .pay-btn:hover { background: #1DA851; }
 
     </style>
-</head>
-<body>
-    <div class="checkout-container">
-        <h2 id="game-title">Top-Up</h2>
-
-        <div class="input-group">
-            <label for="user-id">🆔 Masukkan ID Game:</label>
-            <input type="text" id="user-id" placeholder="Masukkan ID Anda">
-            <input type="text" id="zone-id" placeholder="Zone ID (Opsional)">
-            <button class="lookup-btn" onclick="lookupUsername()">🔍 Cek Username</button>
-            <p id="username-result"></p>
-        </div>
-
-        <div class="input-group">
-            <label>💎 Pilih Produk:</label>
-            <div class="nominal-list" id="nominal-container"></div>
-        </div>
-
-        <button class="pay-btn" onclick="processCheckout()">💳 Bayar Lewat WhatsApp</button>
-    </div>
-
-    <script>
-        const nominalOptions = {
-            ml: [
-                { amount: "86 💎", price: "Rp15.000" },
-                { amount: "172 💎", price: "Rp30.000" },
-                { amount: "344 💎", price: "Rp60.000" },
-                { amount: "514 💎", price: "Rp90.000" },
-                { amount: "706 💎", price: "Rp120.000" },
-                { amount: "1412 💎", price: "Rp240.000" },
-                { amount: "Weekly Diamond Pass", price: "Rp29.000" },
-                { amount: "Starlight Membership", price: "Rp149.000" },
-                { amount: "Starlight Plus Membership", price: "Rp299.000" }
-            ],
-            ff: [
-                { amount: "70 💎", price: "Rp10.000" },
-                { amount: "140 💎", price: "Rp20.000" },
-                { amount: "280 💎", price: "Rp40.000" },
-                { amount: "355 💎", price: "Rp50.000" },
-                { amount: "720 💎", price: "Rp100.000" },
-                { amount: "1440 💎", price: "Rp200.000" }
-            ]
-        };
-
-        function getGameFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get("game") || "ml";
-        }
-
-        function updateNominal(game) {
-            let nominalContainer = document.getElementById("nominal-container");
-            nominalContainer.innerHTML = "";
-
-            nominalOptions[game].forEach(option => {
-                let btn = document.createElement("button");
-                btn.classList.add("nominal");
-                btn.innerText = `${option.amount} - ${option.price}`;
-                btn.setAttribute("data-amount", option.amount);
-                btn.setAttribute("data-price", option.price);
-                btn.onclick = function () {
-                    document.querySelectorAll(".nominal").forEach(btn => btn.classList.remove("selected"));
-                    this.classList.add("selected");
-                };
-                nominalContainer.appendChild(btn);
-            });
-
-            let gameTitle = { ml: "Mobile Legends", ff: "Free Fire" };
-            document.getElementById("game-title").innerText = `Top-Up ${gameTitle[game]}`;
-        }
-
-        function processCheckout() {
-            let userID = document.getElementById("user-id").value;
-            let selectedNominal = document.querySelector(".nominal.selected");
-
-            if (!selectedNominal || !userID) {
-                alert("⚠️ Masukkan ID Game dan pilih nominal terlebih dahulu!");
-                return;
-            }
-
-            let nominal = selectedNominal.getAttribute("data-amount");
-            let price = selectedNominal.getAttribute("data-price");
-
-            let waNumber = "62895401353937";
-            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Halo, saya ingin top-up ${nominal}, harga ${price}`)}`;
-            window.location.href = waLink;
-        }
-
-        window.onload = function () {
-            updateNominal(getGameFromURL());
-        };
-    </script>
 </body>
 </html>
