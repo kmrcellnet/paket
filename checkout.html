@@ -97,7 +97,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">kmr</div>
+        <div class="logo">kmrStore</div>
         <div class="icons">
             <span class="search">🔍</span>
             <span class="user">👤</span>
@@ -107,7 +107,7 @@
 
     <main>
         <section class="input-section">
-            <label for="nomorHP">Masukan Nomor HP</label>
+            <label for="nomorHP">Masukan Nomor HP📱</label>
             <input type="text" id="nomorHP" placeholder="Masukan Nomor HP" oninput="validateNumber(this)">
         </section>
 
@@ -267,8 +267,11 @@
     const waNumber = "62895401353937"; // Gunakan format internasional (62 untuk Indonesia)
 
     // Format pesan
-    const message = `Halo, saya ingin membeli ${name} seharga ${price} untuk nomor ${nomorHP}.`;
-    
+    const message = `📢 Halo! Saya ingin membeli *${name}*  
+💰 Harga: *${price}*  
+📱 Nomor tujuan: *${nomorHP}*  
+✅ Mohon konfirmasinya, terima kasih!`;
+
     // Encode URL
     const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 
