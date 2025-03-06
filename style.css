@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons span {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: green;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.product-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.axis { background: purple; }
+.byu { background: blue; }
+.indosat { background: pink; }
+.smartfren { background: red; }
+.telkomsel { background: darkred; }
+.three { background: orange; }
+.xl { background: blue; }
+
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: green;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 100%;
+    text-align: center;
+    text-decoration: none;
+}

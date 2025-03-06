@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUp Pulsa / Paket Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">kmrStore</div>
+        <div class="icons">
+            <span class="search">🔍</span>
+            <span class="user">👤</span>
+            <span class="transaction">Transaksi</span>
+        </div>
+    </header>
+
+    <main>
+        <h2>TopUp Pulsa / Paket Data</h2>
+        <div class="product-grid">
+            <div class="product-card axis" onclick="goToCheckout('AXIS')">
+                <div class="logo">AXIS</div>
+            </div>
+            <div class="product-card byu" onclick="goToCheckout('BY.U')">
+                <div class="logo">BY.U</div>
+            </div>
+            <div class="product-card indosat" onclick="goToCheckout('INDOSAT')">
+                <div class="logo">INDOSAT</div>
+            </div>
+           <div class="product-card smartfren" onclick="goToCheckout('SMARTFREN')">
+                <div class="logo">SMARTFREN</div>
+            </div>
+            <div class="product-card telkomsel" onclick="goToCheckout('TELKOMSEL')">
+                <div class="logo">TELKOMSEL</div>
+            </div>
+            <div class="product-card three" onclick="goToCheckout('THREE')">
+                <div class="logo">THREE</div>
+            </div>
+            <div class="product-card xl" onclick="goToCheckout('XL')">
+                <div class="logo">XL</div>
+            </div>
+        </div>
+    </main>
+
+   <a href="https://wa.me/0895401353937?text=Halo,%20saya%20ingin%20bertanya%20tentang%20top-up%20pulsa/paket%20data." class="whatsapp-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="40">
+</a>
+
+    <script>
+    function goToCheckout(provider) {
+            window.location.href = `checkout.html?provider=${provider}`;
+        }
+    
+    </script>
+</body>
+</html>
