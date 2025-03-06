@@ -6,16 +6,14 @@
     <title>Checkout Paket Data</title>
     <style>
         /* Reset & Body */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            text-align: center;
-            padding: 20px;
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 20px;
         }
 
         /* Container */
@@ -23,10 +21,10 @@
             background: white;
             max-width: 400px;
             width: 100%;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            text-align: center;
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -38,27 +36,30 @@
 
         /* Judul */
         h2 {
-            color: #343a40;
-            text-align: center;
+            color: #333;
+            font-size: 22px;
             margin-bottom: 15px;
         }
 
-        /* Input Form */
+        /* Input Nomor */
         .input-group {
+            text-align: left;
             margin-bottom: 15px;
         }
 
         label {
             font-weight: 600;
+            font-size: 14px;
             display: block;
             margin-bottom: 5px;
+            color: #555;
         }
 
         input {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
             transition: 0.3s;
         }
@@ -70,17 +71,21 @@
         }
 
         /* Pilihan Paket */
+        .nominal-container {
+            text-align: left;
+            margin-top: 15px;
+        }
+
         .nominal-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         .nominal {
             background: #28a745;
             color: white;
             padding: 15px;
-            border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
@@ -88,6 +93,7 @@
             text-align: center;
             transition: 0.3s;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .nominal:hover {
@@ -113,9 +119,7 @@
             font-weight: bold;
             border-radius: 8px;
             width: 100%;
-            display: block;
             margin-top: 20px;
-            text-align: center;
             transition: 0.3s;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         }
@@ -132,21 +136,21 @@
             }
 
             .nominal-list {
-                grid-template-columns: repeat(1, 1fr); /* Jadi 1 kolom di layar kecil */
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h2 id="provider-title">Paket Data</h2>
+        <h2 id="provider-title">Pilih Paket Data</h2>
 
         <div class="input-group">
             <label for="phone-number">📱 Masukkan Nomor HP:</label>
             <input type="text" id="phone-number" placeholder="08xxxxxxxxxx">
         </div>
 
-        <div class="input-group">
+        <div class="nominal-container">
             <label>📦 Pilih Paket:</label>
             <div class="nominal-list" id="nominal-container"></div>
         </div>
@@ -183,7 +187,7 @@
             dataPackages[provider].forEach(option => {
                 let btn = document.createElement("button");
                 btn.classList.add("nominal");
-                btn.innerText = `${option.amount} - ${option.price}`;
+                btn.innerText = `${option.amount}\n${option.price}`;
                 btn.onclick = () => selectPackage(btn, provider, option.amount, option.price);
                 nominalContainer.appendChild(btn);
             });
@@ -198,11 +202,11 @@
         }
 
         function processCheckout() {
-            let phone = document.getElementById("phone-number").value;
+            let phone = document.getElementById("phone-number").value.trim();
             let selectedPackage = document.querySelector(".nominal.selected");
 
-            if (!phone) {
-                alert("⚠️ Masukkan nomor HP terlebih dahulu!");
+            if (!phone.match(/^08\d{8,11}$/)) {
+                alert("⚠️ Masukkan nomor HP yang valid!");
                 return;
             }
 
@@ -213,14 +217,13 @@
 
             let { provider, amount, price } = JSON.parse(selectedPackage.dataset.selected);
             let waNumber = "62895401353937";
-            let message = `Halo, saya ingin membeli paket ${amount} untuk ${provider.toUpperCase()}.\n📱 Nomor HP: ${phone}\n💰 Harga: ${price}`;
+            let message = `Halo, saya ingin membeli paket:\n📦 ${amount}\n💰 Harga: ${price}\n📱 Nomor HP: ${phone}\n🔌 Provider: ${provider.toUpperCase()}`;
             let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
             window.location.href = waLink;
         }
 
         window.onload = function () {
-            let provider = getProviderFromURL();
-            updatePackages(provider);
+            updatePackages(getProviderFromURL());
         };
     </script>
 </body>
