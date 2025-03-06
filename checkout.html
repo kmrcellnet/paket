@@ -12,28 +12,77 @@
             background: #f9f9f9;
         }
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #ffffff;
-            padding: 15px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: green;
-        }
-        .icons {
-            display: flex;
-            align-items: center;
-        }
-        .icons span {
-            margin-left: 15px;
-            cursor: pointer;
-            font-size: 16px;
-            color: green;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+.provider-logo {
+    width: 50px;  /* Sesuaikan ukuran logo */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+
+.logo img {
+    height: 50px; /* Sesuaikan ukuran logo */
+    width: auto;
+    display: block; /* Hindari margin ekstra */
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons span {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: green;
+}
+/* Efek muncul perlahan saat pertama kali dimuat */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efek berputar saat loading */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.logo img {
+    height: 50px; /* Sesuaikan ukuran logo */
+    width: auto;
+    display: block;
+    animation: fadeIn 1s ease-in-out; /* Animasi muncul */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek hover: membesar sedikit */
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Efek berputar selama 2 detik saat loading */
+.logo img.loading {
+    animation: spin 2s linear infinite;
+}
         .input-section, .topup-section {
             background: white;
             margin: 15px;
@@ -97,13 +146,15 @@
 </head>
 <body>
     <header>
-        <div class="logo">kmrStore</div>
-        <div class="icons">
-            <span class="search">🔍</span>
-            <span class="user">👤</span>
-            <span class="transaction">Transaksi</span>
-        </div>
-    </header>
+    <div class="logo">
+        <img src="img/logo.png" alt="">
+    </div>
+    <div class="icons">
+        <span class="search">🔍</span>
+        <span class="user">👤</span>
+        <span class="transaction">Transaksi</span>
+    </div>
+</header>
 
     <main>
         <section class="input-section">
