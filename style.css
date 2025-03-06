@@ -13,11 +13,18 @@ header {
     padding: 15px;
     border-bottom: 2px solid #e0e0e0;
 }
+.provider-logo {
+    width: 50px;  /* Sesuaikan ukuran logo */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: green;
+
+.logo img {
+    height: 50px; /* Sesuaikan ukuran logo */
+    width: auto;
+    display: block; /* Hindari margin ekstra */
 }
 
 .icons {
@@ -30,6 +37,45 @@ header {
     cursor: pointer;
     font-size: 16px;
     color: green;
+}
+/* Efek muncul perlahan saat pertama kali dimuat */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efek berputar saat loading */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.logo img {
+    height: 50px; /* Sesuaikan ukuran logo */
+    width: auto;
+    display: block;
+    animation: fadeIn 1s ease-in-out; /* Animasi muncul */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek hover: membesar sedikit */
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Efek berputar selama 2 detik saat loading */
+.logo img.loading {
+    animation: spin 2s linear infinite;
 }
 
 h2 {
@@ -58,13 +104,13 @@ h2 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.axis { background: purple; }
-.byu { background: blue; }
-.indosat { background: pink; }
-.smartfren { background: red; }
-.telkomsel { background: darkred; }
-.three { background: orange; }
-.xl { background: blue; }
+.axis { background: white; }
+.byu { background: white; }
+.indosat { background: white; }
+.smartfren { background: white; }
+.telkomsel { background: white; }
+.three { background: white; }
+.xl { background: white; }
 
 
 .whatsapp-btn {
