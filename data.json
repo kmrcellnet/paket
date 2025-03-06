@@ -1,7 +1,0 @@
-{
-    "games": [
-        { "name": "Mobile Legends", "price": 10000 },
-        { "name": "PUBG Mobile", "price": 15000 },
-        { "name": "Free Fire", "price": 8000 }
-    ]
-}
