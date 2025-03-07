@@ -148,32 +148,66 @@ input:focus {
             background: green;
             color: white;
         }
-        .product {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-top: 10px;
-        }
-        .product h3 {
-            margin: 5px 0;
-        }
-        .product .price {
-            color: red;
-            font-weight: bold;
-        }
-        .buy-btn {
-            background: green;
-            color: white;
-            padding: 8px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-        }
+       .product {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.03);
+}
+
+.product img {
+    width: 50px; /* Ukuran logo */
+    height: 50px;
+    margin-right: 12px;
+}
+
+.product .details {
+    flex-grow: 1;
+}
+
+.product h3 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.product p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.product .price {
+    font-size: 18px;
+    color: green;
+    font-weight: bold;
+}
+
+.product .buy-btn {
+    background-color: #f1c40f; /* Warna kuning sesuai tema */
+    color: black;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product .buy-btn:hover {
+    background-color: #d4ac0d;
+}
+
     </style>
 </head>
 <body>
@@ -210,7 +244,8 @@ input:focus {
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM Loaded");
             const params = new URLSearchParams(window.location.search);
             const provider = params.get("provider") || "AXIS"; // Default ke AXIS jika tidak ada provider
 
@@ -218,97 +253,110 @@ input:focus {
             const products = {
                 "AXIS": {
             pulsa: [
-                { name: "Pulsa AXIS 5.000", description: "Pulsa reguler", price: "Rp 7.000" },
-                { name: "Pulsa AXIS 10.000", description: "Pulsa reguler", price: "Rp 12.000" },
-                { name: "Pulsa AXIS 15.000", description: "Pulsa reguler", price: "Rp 17.000" },
-                { name: "Pulsa AXIS 20.000", description: "Pulsa reguler", price: "Rp 22.000" }
+                { name: "Pulsa AXIS 5.000", description: "Pulsa reguler", price: "Rp 7.000", provider: "AXIS" },
+                { name: "Pulsa AXIS 10.000", description: "Pulsa reguler", price: "Rp 12.000", provider: "AXIS" },
+                { name: "Pulsa AXIS 15.000", description: "Pulsa reguler", price: "Rp 17.000", provider: "AXIS" },
+                { name: "Pulsa AXIS 20.000", description: "Pulsa reguler", price: "Rp 22.000", provider: "AXIS"}
               
             ],
             paketData: [
-                { name: "AXIS 2,5GB 5 Hari", description: "Kuota 24 jam", price: "Rp 13.000" },
-                { name: "AXIS 2GB 3 Hari", description: "Kuota 24 jam", price: "Rp 11.000" },
-                { name: "AXIS 1,5GB 3 Hari", description: "Kuota 24 jam", price: "Rp 10.000" }    
+                { name: "AXIS 2,5GB 5 Hari", description: "Kuota 24 jam", price: "Rp 13.000", provider: "AXIS" },
+                { name: "AXIS 2GB 3 Hari", description: "Kuota 24 jam", price: "Rp 11.000", provider: "AXIS" },
+                { name: "AXIS 1,5GB 3 Hari", description: "Kuota 24 jam", price: "Rp 10.000", provider: "AXIS" }    
             ]
         
         },
         "INDOSAT": {
             pulsa: [
-                { name: "tidak tersedia", description: "Pulsa reguler", price: "Rp 6.500" },
-                { name: "tidak tersedia", description: "Pulsa reguler", price: "Rp 12.000" }
+                { name: "tidak tersedia", description: "Pulsa reguler", price: "Rp 6.500", provider: "INDOSAT" },
+                { name: "tidak tersedia", description: "Pulsa reguler", price: "Rp 12.000", provider: "INDOSAT" }
             ],
             paketData: [
-                { name: "IM3 tidak tersedia Freedom", description: "Berlaku 30 Hari", price: "Rp 30.000" },
-                { name: "IM3 tidak tersedia Freedom", description: "Berlaku 30 Hari", price: "Rp 60.000" }
+                { name: "IM3 tidak tersedia Freedom", description: "Berlaku 30 Hari", price: "Rp 30.000", provider: "INDOSAT" },
+                { name: "IM3 tidak tersedia Freedom", description: "Berlaku 30 Hari", price: "Rp 60.000", provider: "INDOSAT" }
             ]
         },
         "SMARTFREN": {
             pulsa: [
-                { name: "Pulsa Smartfren 5.000", description: "Pulsa reguler", price: "Rp 6.500" },
-                { name: "Pulsa Smartfren 10.000", description: "Pulsa reguler", price: "Rp 12.000" }
+                { name: "Pulsa Smartfren 5.000", description: "Pulsa reguler", price: "Rp 6.500", provider: "SMARTFREN" },
+                { name: "Pulsa Smartfren 10.000", description: "Pulsa reguler", price: "Rp 12.000", provider: "SMARTFREN" }
             ],
             paketData: [
-                { name: "Smartfren 2GB", description: "Berlaku 7 Hari", price: "Rp 12.000" },
-                { name: "Smartfren 10GB", description: "Berlaku 30 Hari", price: "Rp 45.000" }
+                { name: "Smartfren 2GB", description: "Berlaku 7 Hari", price: "Rp 12.000", provider: "SMARTFREN" },
+                { name: "Smartfren 10GB", description: "Berlaku 30 Hari", price: "Rp 45.000", provider: "SMARTFREN" }
             ]
         },
         "TELKOMSEL": {
             pulsa: [
-                { name: "Pulsa Telkomsel 5.000", description: "Pulsa reguler", price: "Rp 7.000" },
-                { name: "Pulsa Telkomsel 10.000", description: "Pulsa reguler", price: "Rp 12.000" }
+                { name: "Pulsa Telkomsel 5.000", description: "Pulsa reguler", price: "Rp 7.000", provider: "TELKOMSEL" },
+                { name: "Pulsa Telkomsel 10.000", description: "Pulsa reguler", price: "Rp 12.000", provider: "SMARTFREN" }
             ],
             paketData: [
-                { name: "Telkomsel 3GB", description: "Berlaku 5 Hari", price: "Rp 12.500" },
-                { name: "Telkomsel 1,5GB", description: "Berlaku 3 Hari", price: "Rp 8.000" }
+                { name: "Telkomsel 3GB", description: "Berlaku 5 Hari", price: "Rp 12.500", provider: "SMARTFREN" },
+                { name: "Telkomsel 1,5GB", description: "Berlaku 3 Hari", price: "Rp 8.000", provider: "SMARTFREN" }
             ]
         },
         "THREE": {
             pulsa: [
-                { name: "Pulsa Tri 5.000", description: "Pulsa reguler", price: "Rp 7.000" },
-                { name: "Pulsa Tri 10.000", description: "Pulsa reguler", price: "Rp 12.000" },
-                { name: "Pulsa Tri 15.000", description: "Pulsa reguler", price: "Rp 17.000" },
-                { name: "Pulsa Tri 20.000", description: "Pulsa reguler", price: "Rp 22.000" }
+                { name: "Pulsa Tri 5.000", description: "Pulsa reguler", price: "Rp 7.000", provider: "THREE" },
+                { name: "Pulsa Tri 10.000", description: "Pulsa reguler", price: "Rp 12.000", provider: "THREE" },
+                { name: "Pulsa Tri 15.000", description: "Pulsa reguler", price: "Rp 17.000", provider: "THREE" },
+                { name: "Pulsa Tri 20.000", description: "Pulsa reguler", price: "Rp 22.000", provider: "THREE" }
             ],
             paketData: [
-                { name: "Tri 3GB 3 Hari", description: "Kuota reguler", price: "Rp 11.000" },
-                { name: "Tri 2GB 5 Hari", description: "Kuota reguler", price: "Rp 12.000" },
-                { name: "Tri 1,5GB 7 Hari", description: "Kuota reguler", price: "Rp 11.000" }
+                { name: "Tri 3GB 3 Hari", description: "Kuota reguler", price: "Rp 11.000", provider: "THREE" },
+                { name: "Tri 2GB 5 Hari", description: "Kuota reguler", price: "Rp 12.000", provider: "THREE" },
+                { name: "Tri 1,5GB 7 Hari", description: "Kuota reguler", price: "Rp 11.000", provider: "THREE" }
             ]
         },
         "XL": {
             pulsa: [
-                { name: "Pulsa XL 5.000", description: "Pulsa reguler", price: "Rp 7.000" },
-                { name: "Pulsa XL 10.000", description: "Pulsa reguler", price: "Rp 12.000" },
-                { name: "Pulsa XL 15.000", description: "Pulsa reguler", price: "Rp 17.000" },
-                { name: "Pulsa XL 20.000", description: "Pulsa reguler", price: "Rp 22.000" }
+                { name: "Pulsa XL 5.000", description: "Pulsa reguler", price: "Rp 7.000", provider: "XL" },
+                { name: "Pulsa XL 10.000", description: "Pulsa reguler", price: "Rp 12.000", provider: "XL" },
+                { name: "Pulsa XL 15.000", description: "Pulsa reguler", price: "Rp 17.000", provider: "XL" },
+                { name: "Pulsa XL 20.000", description: "Pulsa reguler", price: "Rp 22.000", provider: "XL" }
            
             ],
             paketData: [
-                { name: "XL 5GB Combo", description: "Berlaku 30 Hari", price: "Rp 25.000" },
-                { name: "XL 20GB Combo", description: "Berlaku 30 Hari", price: "Rp 75.000" }
+                { name: "XL 5GB Combo", description: "Berlaku 30 Hari", price: "Rp 25.000", provider: "XL" },
+                { name: "XL 20GB Combo", description: "Berlaku 30 Hari", price: "Rp 75.000", provider: "XL" }
             ]
         }
     };
 
             // Fungsi load produk
             function loadProducts(type) {
-                const productList = document.getElementById("productList");
-                productList.innerHTML = ""; 
+    const productList = document.getElementById("productList");
+    productList.innerHTML = ""; 
 
-                if (products[provider] && products[provider][type]) {
-                    products[provider][type].forEach(product => {
-                        const productElement = document.createElement("div");
-                        productElement.classList.add("product");
-                        productElement.innerHTML = `
-                            <h3>${product.name}</h3>
-                            <p class="price">${product.price}</p>
-                            <button class="buy-btn" onclick="checkout('${product.name}', '${product.price}')">beli</button>
-                        `;
-                        productList.appendChild(productElement);
-                    });
-                } else {
-                    productList.innerHTML = `<p>Tidak ada produk tersedia.</p>`;
-                }
-            }
+    if (products[provider] && products[provider][type]) {
+        products[provider][type].forEach(product => {
+            const productElement = document.createElement("div");
+            productElement.classList.add("product");
+            productElement.innerHTML = `
+                <img src="img/${product.provider.toLowerCase()}.png" alt="${product.provider} Logo" class="provider-logo">
+           <div class="details">
+                    <h3>${product.name}</h3>
+                    <p>✅ ${product.description}</p>
+                    <p class="price">${product.price}</p>
+                </div>
+                <button class="buy-btn" onclick="console.log('Tombol Beli diklik!')">Beli</button>
+  `;
+            
+            // Pasang event listener ke tombol beli
+            productElement.querySelector(".buy-btn").addEventListener("click", function() {
+                checkout(product.name, product.price);
+            });
+
+            productList.appendChild(productElement);
+        });
+    } else {
+        productList.innerHTML = `<p>Tidak ada produk tersedia.</p>`;
+    }
+}
+
+
+
 
             // Tombol pulsa & paket data
             document.getElementById("btnPulsa").addEventListener("click", function() {
@@ -327,7 +375,7 @@ input:focus {
             loadProducts("pulsa");
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const provider = params.get("provider") || "AXIS"; // Default ke AXIS jika tidak ada provider
 
@@ -361,7 +409,7 @@ input:focus {
     }
 
     // Fungsi checkout dengan validasi nomor
-    function checkout(name, price) {
+    function checkout(productName, productPrice) {
         const nomorHP = document.getElementById("nomorHP").value;
 
         if (!nomorHP || nomorHP.length < 10) {
@@ -376,21 +424,23 @@ input:focus {
             return;
         }
 
-        // Nomor WhatsApp tujuan (ganti dengan nomor admin)
-        const waNumber = "62895401353937"; // Gunakan format internasional (62 untuk Indonesia)
-
-         // Format pesan
-    const message = `📢 Halo! Saya ingin membeli *${name}*  
-💰 Harga: *${price}*  
+       const waNumber = "62895401353937";
+        const message = `📢 Halo! Saya ingin membeli *${productName}*  
+💰 Harga: *${productPrice}*  
 📱 Nomor tujuan: *${nomorHP}*  
 ✅ Mohon konfirmasinya, terima kasih!`;
 
-        // Encode URL
         const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+        console.log("Redirecting to:", waLink);
 
-        // Arahkan ke WhatsApp
         window.location.href = waLink;
     }
+
+    function validasiNomorHP(nomor) {
+        const regex = /^(08[1-9][0-9]{7,10})$/; // Format nomor Indonesia
+        return regex.test(nomor);
+    }
+
 
     // Tambahkan event listener ke input nomor
     document.getElementById("nomorHP").addEventListener("input", function () {
