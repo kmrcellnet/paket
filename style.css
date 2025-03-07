@@ -13,6 +13,7 @@ header {
     padding: 15px;
     border-bottom: 2px solid #e0e0e0;
 }
+
 .provider-logo {
     width: 50px;  /* Sesuaikan ukuran logo */
     height: auto;
@@ -20,11 +21,22 @@ header {
     margin: 0 auto 10px;
 }
 
-
 .logo img {
     height: 50px; /* Sesuaikan ukuran logo */
     width: auto;
     display: block; /* Hindari margin ekstra */
+    animation: fadeIn 1s ease-in-out; /* Animasi muncul */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek hover: membesar sedikit */
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Efek berputar saat loading */
+.logo img.loading {
+    animation: spin 2s linear infinite;
 }
 
 .icons {
@@ -38,6 +50,7 @@ header {
     font-size: 16px;
     color: green;
 }
+
 /* Efek muncul perlahan saat pertama kali dimuat */
 @keyframes fadeIn {
     from {
@@ -60,29 +73,12 @@ header {
     }
 }
 
-.logo img {
-    height: 50px; /* Sesuaikan ukuran logo */
-    width: auto;
-    display: block;
-    animation: fadeIn 1s ease-in-out; /* Animasi muncul */
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Efek hover: membesar sedikit */
-.logo img:hover {
-    transform: scale(1.1);
-}
-
-/* Efek berputar selama 2 detik saat loading */
-.logo img.loading {
-    animation: spin 2s linear infinite;
-}
-
-h2 {
+h2, h3 {
     text-align: center;
     margin: 20px 0;
 }
 
+/* Grid untuk produk */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -92,27 +88,30 @@ h2 {
     margin: auto;
 }
 
+/* Kartu Produk */
 .product-card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 120px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    color: white;
+    text-align: center;
+    background: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.axis { background: white; }
-.byu { background: white; }
-.indosat { background: white; }
-.smartfren { background: white; }
-.telkomsel { background: white; }
-.three { background: white; }
-.xl { background: white; }
+/* Efek hover pada kartu produk */
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
 
-
+/* WhatsApp Floating Button */
 .whatsapp-btn {
     position: fixed;
     bottom: 20px;
@@ -124,4 +123,12 @@ h2 {
     border-radius: 100%;
     text-align: center;
     text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Efek hover untuk tombol WhatsApp */
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
