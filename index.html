@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopUp Pulsa / Paket Data</title>
+    <title>TopUp Pulsa / Paket Data / Token Listrik</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+<header>
     <div class="logo">
         <img src="img/logo.png" alt="">
     </div>
@@ -19,51 +19,43 @@
     </div>
 </header>
 
+<main>
+    <h2>TopUp Pulsa / Paket Data</h2>
+    <div class="product-grid">
+        <div class="product-card axis" onclick="goToCheckout('AXIS')">
+            <img src="img/axis.png" alt="AXIS Logo" class="provider-logo">
+        </div>
+        <div class="product-card indosat" onclick="goToCheckout('INDOSAT')">
+            <img src="img/indosat.png" alt="INDOSAT Logo" class="provider-logo">
+        </div>
+        <div class="product-card smartfren" onclick="goToCheckout('SMARTFREN')">
+            <img src="img/smartfren.png" alt="SMARTFREN Logo" class="provider-logo">
+        </div>
+        <div class="product-card telkomsel" onclick="goToCheckout('TELKOMSEL')">
+            <img src="img/telkomsel.png" alt="TELKOMSEL Logo" class="provider-logo">
+        </div>
+        <div class="product-card three" onclick="goToCheckout('THREE')">
+            <img src="img/three.png" alt="THREE Logo" class="provider-logo">
+        </div>
+        <div class="product-card xl" onclick="goToCheckout('XL')">
+            <img src="img/xl.png" alt="XL Logo" class="provider-logo">
+        </div>
+    </div>
+    </div>
+</main>
 
-    <main>
-        <h2>TopUp Pulsa / Paket Data</h2>
-        <div class="product-grid">
-    <div class="product-card axis" onclick="goToCheckout('AXIS')">
-        <img src="img/axis.png" alt="AXIS Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card byu" onclick="goToCheckout('BY.U')">
-        <img src="img/byu.png" alt="BY.U Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card indosat" onclick="goToCheckout('INDOSAT')">
-        <img src="img/indosat.png" alt="INDOSAT Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card smartfren" onclick="goToCheckout('SMARTFREN')">
-        <img src="img/smartfren.png" alt="SMARTFREN Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card telkomsel" onclick="goToCheckout('TELKOMSEL')">
-        <img src="img/telkomsel.png" alt="TELKOMSEL Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card three" onclick="goToCheckout('THREE')">
-        <img src="img/three.png" alt="THREE Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-    <div class="product-card xl" onclick="goToCheckout('XL')">
-        <img src="img/xl.png" alt="XL Logo" class="provider-logo">
-        <div class="logo"></div>
-    </div>
-</div>
-
-    </main>
-
-   <a href="https://wa.me/0895401353937?text=Halo,%20saya%20ingin%20bertanya%20tentang%20top-up%20pulsa/paket%20data." class="whatsapp-btn">
+<a href="https://wa.me/0895401353937?text=Halo,%20saya%20ingin%20bertanya%20tentang%20top-up%20pulsa/paket%20data/token%20listrik." class="whatsapp-btn">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="40">
 </a>
 
-    <script>
+<script>
     function goToCheckout(provider) {
-            window.location.href = `checkout.html?provider=${provider}`;
-        }
-    
-    </script>
+    window.location.href = `checkout.html?provider=${provider}`;
+}
+
+
+
+</script>
+
 </body>
 </html>
