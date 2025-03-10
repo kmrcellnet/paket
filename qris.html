@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRIS Pembayaran</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .checkout-container {
+            width: 90%;
+            max-width: 420px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .checkout-container h2 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .qr-container {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .qr-container img {
+            width: 220px;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid #ddd;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .qr-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            background: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(255, 204, 0, 0.2);
+        }
+
+        .button:hover {
+            background: #e6b800;
+            transform: scale(1.03);
+        }
+
+        .button.whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
+        }
+
+        .button.whatsapp:hover {
+            background: #1EBB5A;
+            transform: scale(1.03);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-container">
+    <h2>🔹 Pembayaran QRIS</h2>
+    <p class="info">💳 <span class="highlight" id="productName"></span></p>
+    <p class="info">💰 Harga: <span class="highlight" id="productPrice"></span></p>
+    <p class="info">📱 Nomor HP: <span class="highlight" id="nomorHp"></span></p>
+
+    <div class="qr-container">
+        <p>📌 Scan QR untuk membayar:</p>
+        <img src="img/qris-example.png" alt="QRIS Pembayaran">
+        <p class="info">Setelah pembayaran, klik konfirmasi.</p>
+        <button class="button whatsapp" onclick="confirmPayment()">✅ Konfirmasi ke WhatsApp</button>
+    </div>
+
+    <p class="footer">⚡ Pembayaran otomatis diverifikasi dalam beberapa menit.</p>
+</div>
+
+<script>
+    // Ambil data dari URL
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get("product") || "Tidak Diketahui";
+    const productPrice = params.get("price") || "Rp 0";
+    const phoneNumber = params.get("phone") || params.get("Phone") || params.get("nomorHP") || "Tidak Diketahui";
+
+    // Tampilkan informasi produk
+    document.getElementById("productName").innerText = productName;
+    document.getElementById("productPrice").innerText = productPrice;
+    document.getElementById("nomorHp").innerText = phoneNumber;
+
+    function confirmPayment() {
+        if (!phoneNumber || phoneNumber === "Tidak Diketahui") {
+            alert("Nomor HP tidak ditemukan. Pastikan Anda mengisi dengan benar.");
+            return;
+        }
+
+        const waNumber = "62895401353937"; // Nomor WhatsApp admin
+        const message = `📢 Halo admin, saya telah membayar via QRIS!\n\n🔹 *Produk:* ${productName}\n💰 *Harga:* ${productPrice}\n📱 *Nomor HP:* ${phoneNumber}\n✅ Mohon konfirmasinya, terima kasih!`;
+
+        const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+        window.location.href = waLink;
+    }
+</script>
+
+</body>
+</html>
