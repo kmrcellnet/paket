@@ -421,38 +421,27 @@ input:focus {
     }
 
     // Fungsi checkout dengan validasi nomor
-    function checkout(productName, productPrice) {
-        const nomorHP = document.getElementById("nomorHP").value;
+    // Fungsi checkout dengan validasi nomor
+  function checkout(productName, productPrice) {
+    const nomorHP = document.getElementById("nomorHP").value;
 
-        if (!nomorHP || nomorHP.length < 10) {
-            alert("Masukkan nomor HP yang valid!");
-            return;
-        }
-
-        let isValid = providerPrefixes[provider].some(prefix => nomorHP.startsWith(prefix));
-
-        if (!isValid) {
-            alert("Nomor HP tidak sesuai dengan provider " + provider);
-            return;
-        }
-
-       const waNumber = "62895401353937";
-        const message = `📢 Halo! Saya ingin membeli *${productName}*  
-💰 Harga: *${productPrice}*  
-📱 Nomor tujuan: *${nomorHP}*  
-✅ Mohon konfirmasinya, terima kasih!`;
-
-        const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-        console.log("Redirecting to:", waLink);
-
-        window.location.href = waLink;
+    if (!nomorHP || nomorHP.length < 10) {
+        alert("Masukkan nomor HP yang valid!");
+        return;
     }
 
-    function validasiNomorHP(nomor) {
-        const regex = /^(08[1-9][0-9]{7,10})$/; // Format nomor Indonesia
-        return regex.test(nomor);
+    let isValid = providerPrefixes[provider].some(prefix => nomorHP.startsWith(prefix));
+
+    if (!isValid) {
+        alert("Nomor HP tidak sesuai dengan provider " + provider);
+        return;
     }
 
+    // Redirect ke qris.html dengan membawa data produk dan nomor HP
+    const qrisUrl = `qris.html?product=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&nomorHP=${encodeURIComponent(nomorHP)}`;
+    
+    window.location.href = qrisUrl;
+}
 
     // Tambahkan event listener ke input nomor
     document.getElementById("nomorHP").addEventListener("input", function () {
@@ -462,6 +451,7 @@ input:focus {
     // Simpan fungsi checkout di global scope agar bisa dipanggil dari tombol beli
     window.checkout = checkout;
 });
+
 
 
     </script>
