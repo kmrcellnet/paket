@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil</title>
+    <meta name="theme-color" content="#00b894">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Styling Umum */
+        body {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #00b894);
+            padding: 40px;
+            color: white;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            max-width: 350px;
+            margin: auto;
+            animation: fadeIn 0.4s ease-in-out;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Heading */
+        h1 {
+            color: #00b894;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Teks */
+        p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        /* Box Alert */
+        .alert {
+            background: #ffcc00;
+            color: #000;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 12px;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Tombol */
+        .btn {
+            display: block;
+            margin-top: 12px;
+            padding: 10px;
+            background: #00b894;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: #009874;
+            transform: scale(1.03);
+        }
+
+        /* Tombol Dinonaktifkan */
+        .btn-disabled {
+            background: gray !important;
+            cursor: not-allowed !important;
+            opacity: 0.6;
+        }
+
+        /* Detail Transaksi */
+        .details {
+            text-align: left;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .details p {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        .details p i {
+            margin-right: 8px;
+            color: #00b894;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Pembayaran Berhasil!</h1>
+        <p>Terima kasih telah melakukan pembayaran.</p>
+        
+        <div class="alert">
+            ⚠️ <strong>Wajib konfirmasi ke WhatsApp Admin</strong> untuk mempercepat proses pesanan Anda.
+        </div>
+
+        <div class="details">
+            <p><i>🛒</i> <strong>Produk:</strong> <span id="productName">-</span></p>
+            <p><i>💰</i> <strong>Harga:</strong> <span id="productPrice">-</span></p>
+            <p id="customerInfo"><i>📱</i> <strong>Nomor HP:</strong> <span>-</span></p>
+            <p><i>💳</i> <strong>Metode Pembayaran:</strong> <span id="paymentMethod">-</span></p>
+        </div>
+
+        <a href="#" id="whatsappLink" class="btn">🔗 Konfirmasi ke WhatsApp</a>
+        <a href="index.html" id="backHome" class="btn btn-disabled">🏠 Kembali ke Beranda</a>
+    </div>
+
+<script>
+    // Ambil parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product') || "Produk Tidak Diketahui";
+    const productPrice = urlParams.get('price') || "Rp 0";
+    const customerInfo = urlParams.get('phone') || "Tidak ada data";
+    const paymentMethod = urlParams.get('method') || "Tidak Diketahui";
+
+    // Tampilkan di halaman
+    document.getElementById("productName").textContent = productName;
+    document.getElementById("productPrice").textContent = productPrice;
+    document.getElementById("customerInfo").innerHTML = `<i>📱</i> <strong>Nomor HP:</strong> <span>${customerInfo}</span>`;
+    document.getElementById("paymentMethod").textContent = paymentMethod;
+
+    // Kirim ke WhatsApp Admin
+    const adminPhone = "62895401353937"; // Ganti dengan nomor WhatsApp admin
+    const whatsappMessage = `Halo Admin, saya telah melakukan pembayaran!%0A%0A✅ Produk: ${productName}%0A💰 Harga: ${productPrice}%0A📱 Nomor HP: ${customerInfo}%0A💳 Metode Pembayaran: ${paymentMethod}%0A%0AMohon segera diproses.`;
+    const whatsappLink = `https://wa.me/${adminPhone}?text=${whatsappMessage}`;
+    document.getElementById("whatsappLink").href = whatsappLink;
+</script>
+
+</body>
+</html>

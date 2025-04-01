@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kmrStore TopUp Pulsa / Paket Data</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#28a745">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo">
+    </div>
+    <div class="icons">
+        <span class="search" onclick="toggleSearch()">🔍</span>
+
+    </div>
+    </div>
+</header>
+
+<!-- Input Pencarian -->
+<div id="search-container" class="hidden">
+    <input type="text" id="search-input" placeholder="Cari provider..." onkeyup="searchProvider()">
+</div>
+
+<main>
+    <h2>TopUp Pulsa / Paket Data</h2>
+    <div class="product-grid">
+        <div class="product-card" data-provider="AXIS" onclick="goToCheckout('AXIS')">
+            <img src="img/axis.png" alt="AXIS Logo" class="provider-logo">
+            <p>AXIS</p>
+        </div>
+        <div class="product-card" data-provider="INDOSAT" onclick="goToCheckout('INDOSAT')">
+            <img src="img/indosat.png" alt="INDOSAT Logo" class="provider-logo">
+            <p>INDOSAT</p>
+        </div>
+        <div class="product-card" data-provider="SMARTFREN" onclick="goToCheckout('SMARTFREN')">
+            <img src="img/smartfren.png" alt="SMARTFREN Logo" class="provider-logo">
+            <p>SMARTFREN</p>
+        </div>
+        <div class="product-card" data-provider="TELKOMSEL" onclick="goToCheckout('TELKOMSEL')">
+            <img src="img/telkomsel.png" alt="TELKOMSEL Logo" class="provider-logo">
+            <p>TELKOMSEL</p>
+        </div>
+        <div class="product-card" data-provider="THREE" onclick="goToCheckout('THREE')">
+            <img src="img/three.png" alt="THREE Logo" class="provider-logo">
+            <p>THREE</p>
+        </div>
+        <div class="product-card" data-provider="XL" onclick="goToCheckout('XL')">
+            <img src="img/xl.png" alt="XL Logo" class="provider-logo">
+            <p>XL</p>
+        </div>
+    </div>
+    <!-- Bagian TopUp E-Wallet -->
+    <h2>TopUp E-Wallet</h2>
+    <div class="product-grid">
+        <div class="product-card" data-provider="DANA" onclick="goToCheckout('DANA')">
+            <img src="img/dana.png" alt="Dana Logo" class="provider-logo">
+            <p>Dana</p>
+        </div>
+        <div class="product-card" data-provider="OVO" onclick="goToCheckout('OVO')">
+            <img src="img/ovo.png" alt="OVO Logo" class="provider-logo">
+            <p>OVO</p>
+        </div>
+        <div class="product-card" data-provider="GOPAY" onclick="goToCheckout('GOPAY')">
+            <img src="img/gopay.png" alt="GoPay Logo" class="provider-logo">
+            <p>GoPay</p>
+        </div>
+        <div class="product-card" data-provider="SHOPEEPAY" onclick="goToCheckout('SHOPEEPAY')">
+            <img src="img/pay.png" alt="ShopeePay Logo" class="provider-logo">
+            <p>ShopeePay</p>
+        </div>
+</main>
+
+
+
+<script>
+    function goToCheckout(provider) {
+        window.location.href = `produk.html?provider=${provider}`;
+    }
+
+    function toggleSearch() {
+        let searchContainer = document.getElementById("search-container");
+        searchContainer.classList.toggle("hidden");
+        if (!searchContainer.classList.contains("hidden")) {
+            document.getElementById("search-input").focus();
+        }
+    }
+
+    function searchProvider() {
+        let input = document.getElementById("search-input").value.toUpperCase();
+        let products = document.querySelectorAll(".product-card");
+
+        products.forEach(product => {
+            let providerName = product.getAttribute("data-provider");
+            if (providerName.includes(input) || input === "") {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
+        });
+    }
+    window.addEventListener("DOMContentLoaded", function() {
+    let userLogin = localStorage.getItem("userLogin");
+    if (userLogin) {
+      let user = JSON.parse(userLogin);
+      // Tampilkan nama dan nomor WhatsApp di header
+      document.getElementById("userInfo").innerHTML = `<span>${user.nama}</span>`;
+    }
+  });
+    
+</script>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    #search-container {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #search-input {
+        width: 80%;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa; /* Warna abu-abu terang */
+    padding: 20px 0;
+    text-align: center;
+    border-top: 3px solid #28a745; /* Garis hijau di atas footer */
+}
+
+/* Ikon Sosial Media */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    color: #28a745;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Efek hover */
+.social-icons a:hover {
+    background-color: #28a745;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Bagian Bawah Footer */
+.footer-bottom {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 0;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+
+    
+</style>
+
+<footer>
+    <div class="social-icons">
+        <a href="https://facebook.com/Komarzx" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/nkmrx_18" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/nkmrx_18" target="_blank"><i class="fab fa-tiktok"></i></a> 
+        <a href="https://wa.me/62895401353937" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2025 kmrStore - Semua Hak Dilindungi.
+    </div>
+</footer>
+
+    
+    
+    
+</body>
+</html>

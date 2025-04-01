@@ -1,0 +1,225 @@
+/* Reset dasar */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Sticky */
+header {
+    position: fixed; /* Tetap di atas saat di-scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff; /* Pastikan tetap terlihat */
+    padding: 12px 20px;
+    border-bottom: 2px solid #e0e0e0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Pastikan header tetap di atas konten */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tambahkan margin atas agar konten tidak tertutup header */
+body {
+    padding-top: 70px; /* Sesuaikan dengan tinggi header */
+}
+
+/* Ikon Navigasi */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 80px;
+    overflow: visible;
+}
+
+.icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-decoration: none;
+    color: green;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Efek hover */
+.icons a:hover {
+    background-color: #ddd;
+    transform: scale(1.1);
+}
+
+/* Responsif: Header & Ikon */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+    }
+
+    .icons a {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .icons a {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+}
+
+/* Logo Provider */
+.provider-logo {
+    width: 80px;
+    height: 70px;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+
+/* Logo */
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Animasi Loading */
+.logo img.loading {
+    animation: spin 2s linear infinite;
+}
+
+/* Animasi Efek Muncul */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efek berputar saat loading */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Heading */
+h2, h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Grid untuk produk */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px; /* Lebih fleksibel di layar besar */
+    margin: auto;
+}
+
+/* Kartu Produk */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+/* Efek hover */
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Ukuran gambar WhatsApp */
+.whatsapp-btn img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Efek hover */
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        max-width: 600px;
+    }
+
+    .product-card {
+        height: 130px;
+        font-size: 13px;
+    }
+
+    .whatsapp-btn img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        max-width: 90%;
+    }
+
+    .product-card {
+        height: 120px;
+        font-size: 12px;
+    }
+
+    .whatsapp-btn img {
+        width: 50px;
+        height: 50px;
+    }
+}
