@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsa & Paket Data</title>
+     <link rel="stylesheet" href="produk.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta name="theme-color" content="#008000"> <!-- Warna Hijau -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- Untuk iOS -->
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <img src="img/logo.png" alt="">
+    </div>
+    <div class="icons">
+        <a href="index.html"><i class="fas fa-home"></i></a>
+
+  
+    </div>
+</header>
+
+
+    <main>
+        <section class="input-section">
+        <div class="input-container">
+            <label for="nomorHP">📱Masukkan Nomor HP</label>
+            <input type="text" id="nomorHP" placeholder="08XXXXXXXXXX">
+            <small id="errorMsg">Nomor tidak valid atau tidak sesuai provider!</small>
+        </div>
+    </section>
+
+        <section class="topup-section">
+            <h2>Pilih Nominal Top Up</h2>
+            <div class="tab">
+    <button id="btnPulsa" class="active">Pulsa</button>
+    <button id="btnPaketData">Paket Data</button>
+</div>
+<div id="productList"></div>
+<section class="payment-section">
+    <h2>Pilih Metode Pembayaran</h2>
+    <div id="paymentMethods" class="payment-list"></div>
+   <button id="btnBayar" class="btn-primary">Bayar Sekarang</button>
+
+</section>
+
+
+
+            
+
+        </section>
+    </main>
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+    let userLogin = localStorage.getItem("userLogin");
+    if (userLogin) {
+      let user = JSON.parse(userLogin);
+      // Tampilkan nama dan nomor WhatsApp di header
+      document.getElementById("userInfo").innerHTML = `<span>${user.nama}</span>`;
+    }
+  });
+    </script>
+
+    <script src="produk.js"></script>
+<footer>
+    <div class="social-icons">
+        <a href="https://facebook.com/Komarzx" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/nkmrx_18" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/nkmrx_18" target="_blank"><i class="fab fa-tiktok"></i></a> 
+        <a href="https://wa.me/62895401353937" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2025 kmrStore - Semua Hak Dilindungi.
+    </div>
+</footer>
+
+    
+</body>
+</html>
